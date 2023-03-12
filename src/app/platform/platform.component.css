@@ -1,35 +1,19 @@
-.admin-panel {
-  width: 80%;
-  margin: 0 auto;
+.menu-icon {
+  margin-right: 8px;
 }
 
-h2 {
-  text-align: center;
+.spacer {
+  flex: 1 1 auto;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.icon-button {
+  margin-left: 8px;
 }
 
-th {
-  background-color: #eee;
-  padding: 10px;
-  text-align: left;
+.container {
+  height: calc(100vh - 64px);
 }
 
-td {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-.mat-menu-panel {
-  width: 100vw !important;
-}
-.mat-menu-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.content {
+  padding: 16px;
 }

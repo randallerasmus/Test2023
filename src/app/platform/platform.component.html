@@ -1,28 +1,35 @@
-<div class="admin-panel">
-  <h2>User Management</h2>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-    <span>Menu</span>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleSidenav()" class="menu-icon" aria-label="Toggle sidenav">
+    <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>Dashboard</button>
-    <button mat-menu-item>Users</button>
-    <button mat-menu-item>Settings</button>
-  </mat-menu>
-  <table>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <span>Admin Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="icon-button" aria-label="Notifications">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button class="icon-button" aria-label="Messages">
+    <mat-icon>message</mat-icon>
+  </button>
+  <button mat-icon-button class="icon-button" aria-label="Settings">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button mat-icon-button class="icon-button" aria-label="Account">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" [opened]="false">
+    <mat-nav-list>
+      <a mat-list-item href="#">Dashboard</a>
+      <a mat-list-item href="#">Users</a>
+      <a mat-list-item href="#">Orders</a>
+      <a mat-list-item href="#">Products</a>
+      <a mat-list-item href="#">Settings</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <!-- Your main content goes here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

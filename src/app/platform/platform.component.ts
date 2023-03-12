@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-platform',
@@ -8,10 +8,17 @@ import {Component} from '@angular/core';
 })
 export class PlatformComponent  {
 
-  users = [
-    { name: 'John Doe', email: 'john@example.com', role: 'admin' },
-    { name: 'Jane Doe', email: 'jane@example.com', role: 'user' },
-    { name: 'Bob Smith', email: 'bob@example.com', role: 'user' }
-  ];
+  container!: HTMLElement;
+  sidenav!: MatSidenav;
 
+
+  constructor() {}
+
+  ngAfterViewInit() {
+    this.container = document.querySelector('.example-container')!;
+  }
+
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 }
