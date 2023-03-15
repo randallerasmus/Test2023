@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="toggleSidenav()" class="menu-icon" aria-label="Toggle " #sidenav>
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="admin-dashboard" routerLink="/platform/dashboard" routerLinkActive="active-link">Admin Dashboard</span>
+  <span class="admin-dashboard" routerLink="/platform/dashboard" routerLinkActive="active-link">TwentyBucks Dashboard</span>
   <span class="spacer"></span>
   <button mat-icon-button class="icon-button" aria-label="Notifications">
     <mat-icon>notifications</mat-icon>
@@ -28,7 +28,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/platform/dashboard" routerLinkActive="active-link">Dashboard</a>
       <a mat-list-item routerLink="/platform/users" routerLinkActive="active-link">Users</a>
-      <a mat-list-item [routerLink]="['/orders']">Orders</a>
+      <a mat-list-item routerLink="/platform/wagers" routerLinkActive="active-link">Wagers</a>
       <a mat-list-item [routerLink]="['/products']">Products</a>
       <a mat-list-item routerLink="/platform/settings" routerLinkActive="active-link">Settings</a>
     </mat-nav-list>
