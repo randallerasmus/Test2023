@@ -78,7 +78,8 @@ import { WagersComponent } from './wagers/wagers.component';
         MatToolbarModule,
         MatListModule,
         MatTableModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,9 +28,9 @@ export class ProfileComponent implements OnInit{
   }
 
   ngOnInit() {
-    setTimeout(() => {
+
       this.imageUrl = this.imageService.imageUrl;
-    }, 500);
+
   }
 
 
