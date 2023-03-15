@@ -10,8 +10,9 @@
   <button mat-icon-button class="icon-button" aria-label="Messages">
     <mat-icon>message</mat-icon>
   </button>
-  <button mat-icon-button class="icon-button" aria-label="Settings">
-    <mat-icon>settings</mat-icon>
+  <button mat-icon-button class="icon-button" aria-label="Settings"
+          routerLink="/platform/settings" routerLinkActive="active-link" >
+    <mat-icon >settings</mat-icon>
   </button>
   <button mat-icon-button class="icon-button" aria-label="Account" [matMenuTriggerFor]="profileMenu">
     <mat-icon>account_circle</mat-icon>
@@ -29,7 +30,7 @@
       <a mat-list-item routerLink="/platform/users" routerLinkActive="active-link">Users</a>
       <a mat-list-item [routerLink]="['/orders']">Orders</a>
       <a mat-list-item [routerLink]="['/products']">Products</a>
-      <a mat-list-item [routerLink]="['/settings']">Settings</a>
+      <a mat-list-item routerLink="/platform/settings" routerLinkActive="active-link">Settings</a>
     </mat-nav-list>
   </mat-sidenav>
 

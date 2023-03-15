@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
 import {PlatformComponent} from "./platform/platform.component";
 import {CreateUserComponent} from "./platform/create-user/create-user.component";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {CreateUserComponent} from "./platform/create-user/create-user.component"
     DashboardComponent,
     ProfileComponent,
     CreateUserComponent,
+    SettingsComponent,
 
   ],
     imports: [
