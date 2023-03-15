@@ -6,6 +6,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CreateUserComponent} from "./platform/create-user/create-user.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./settings/settings.component";
+import {WagersComponent} from "./wagers/wagers.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,7 +16,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: CreateUserComponent },
       { path: 'profile', component: ProfileComponent },
-      // { path: 'products', component: ProductsComponent },
+      { path: 'wagers', component: WagersComponent },
       { path: 'settings', component: SettingsComponent },
     ]}
 ];
