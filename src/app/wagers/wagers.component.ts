@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {SoccerService} from "../platform/services/soccer.service";
+// import {SoccerService} from "../platform/services/soccer.service";
 
 interface Pokemon {
   value: string;
@@ -27,7 +27,7 @@ export class WagersComponent {
   query: string = '';
   matches: any[] = [];
 
-  constructor(private soccerService: SoccerService) {
+  constructor() {
   }
 
   pokemonGroups: PokemonGroup[] = [
@@ -66,8 +66,8 @@ export class WagersComponent {
   ];
 
   search() {
-    this.soccerService.getLiveMatches(this.query).subscribe((data: any) => {
-      this.matches = data.api.fixtures;
-    });
+    // this.soccerService.getLiveMatches(this.query).subscribe((data: any) => {
+    //   this.matches = data.api.fixtures;
+    // });
   }
 }

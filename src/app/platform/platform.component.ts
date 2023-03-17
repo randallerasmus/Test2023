@@ -14,8 +14,7 @@ export class PlatformComponent implements OnInit{
 
   ngOnInit() {
     this.router.navigate(['/platform/dashboard']);
-    this.sidenav.open();
-  }
+    }
 
   toggleSidenav() {
     if (this.sidenav) {
