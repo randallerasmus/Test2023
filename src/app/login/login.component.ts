@@ -1,11 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-    SocialAuthService, SocialUser
-} from '@abacritt/angularx-social-login';
-import {take} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { take } from 'rxjs/operators';
+import {SocialUser} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -13,41 +10,32 @@ import {take} from "rxjs";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: SocialUser | null = null;
-  loggedIn: boolean | null = null;
 
-  constructor(private router: Router, private authService: SocialAuthService) {}
+  user: any;
+  loggedIn = false;
 
-  ngOnInit() {
-    this.authService.authState.subscribe((user) => {
+  constructor(
+    private router: Router,
+    private authService: SocialAuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user:SocialUser) => {
       this.user = user;
-      this.loggedIn = user != null;
+      this.loggedIn = !!user;
+      console.log('User:', this.user);
+      this.goToPlatform();
     });
   }
 
-  goToPlatform(): void {
-    this.router.navigate(['/platform']);
-  }
-
   async signInWithGoogle(): Promise<void> {
-    console.log('1')
     try {
-      console.log('2')
-
       const user = await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-      console.log('google login', user);
+      console.log('Google login:', user);
       if (user) {
-        console.log('3')
-
-        this.loggedIn = true; // set the loggedIn flag to true
-         console.log('4')
-
+        this.loggedIn = true;
         this.router.navigateByUrl('/platform/dashboard');
-        console.log('5')
-
-        this.getUserDetails(); // Call the method to retrieve user details.
-        console.log('6')
-
+        await this.getUserDetails();
       }
     } catch (error) {
       console.error('Error signing in with Google:', error);
@@ -56,10 +44,8 @@ export class LoginComponent implements OnInit {
 
   async getUserDetails(): Promise<void> {
     try {
-      console.log('7')
-
       const user = await this.authService.authState.pipe(take(1)).toPromise();
-      if (user != null) {
+      if (user) {
         this.user = user;
       }
     } catch (error) {
@@ -77,5 +63,11 @@ export class LoginComponent implements OnInit {
 
   refreshToken(): void {
     this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  public goToPlatform(): void {
+    if (this.loggedIn) {
+      this.router.navigate(['/platform']);
+    }
   }
 }

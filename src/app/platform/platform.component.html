@@ -2,21 +2,25 @@
   <button mat-icon-button (click)="toggleSidenav()" class="menu-icon" aria-label="Toggle " #sidenav>
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="admin-dashboard" routerLink="/platform/dashboard" routerLinkActive="active-link">TwentyBucks Dashboard</span>
+  <span class="admin-dashboard" routerLink="/platform/dashboard" routerLinkActive="active-link">
+     TwentyBucks Dashboard
+  </span>
   <span class="spacer"></span>
-  <button mat-icon-button class="icon-button" aria-label="Notifications">
-    <mat-icon>notifications</mat-icon>
-  </button>
-  <button mat-icon-button class="icon-button" aria-label="Messages">
-    <mat-icon>message</mat-icon>
-  </button>
-  <button mat-icon-button class="icon-button" aria-label="Settings"
-          routerLink="/platform/settings" routerLinkActive="active-link" >
-    <mat-icon >settings</mat-icon>
-  </button>
-  <button mat-icon-button class="icon-button" aria-label="Account" [matMenuTriggerFor]="profileMenu">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <div class="icon-container">
+    <button mat-icon-button class="icon-button" aria-label="Notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button class="icon-button" aria-label="Messages">
+      <mat-icon>message</mat-icon>
+    </button>
+    <button mat-icon-button class="icon-button" aria-label="Settings"
+            routerLink="/platform/settings" routerLinkActive="active-link" >
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button class="icon-button" aria-label="Account" [matMenuTriggerFor]="profileMenu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
   <mat-menu #profileMenu="matMenu">
     <a mat-menu-item routerLink="/platform/profile" routerLinkActive="active-link">Profile</a>
     <button mat-menu-item (click)="logout()">Logout</button>
@@ -26,11 +30,27 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav mode="side" [opened]="false">
     <mat-nav-list>
-      <a mat-list-item routerLink="/platform/dashboard" routerLinkActive="active-link">Dashboard</a>
-      <a mat-list-item routerLink="/platform/users" routerLinkActive="active-link">Users</a>
-      <a mat-list-item routerLink="/platform/wagers" routerLinkActive="active-link">Wagers</a>
-      <a mat-list-item routerLink="/platform/profile" routerLinkActive="active-link">Profile</a>
-      <a mat-list-item routerLink="/platform/settings" routerLinkActive="active-link">Settings</a>
+      <a mat-list-item routerLink="/platform/dashboard" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">home</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/platform/users" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">people</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Users</span>
+      </a>
+      <a mat-list-item routerLink="/platform/wagers" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">attach_money</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Wagers</span>
+      </a>
+      <a mat-list-item routerLink="/platform/profile" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">person</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Profile</span>
+      </a>
+      <a mat-list-item routerLink="/platform/settings" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">settings</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Settings</span>
+      </a>
+
     </mat-nav-list>
   </mat-sidenav>
 
