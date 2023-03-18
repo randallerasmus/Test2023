@@ -1,0 +1,25 @@
+<h2>Inbox</h2>
+<div class="message-list">
+  <div class="message-item"
+       *ngFor="let message of messages"
+       [class.selected]="message === selectedMessage"
+       (click)="onSelect(message)">
+    <div class="message-item-header">
+      <span class="message-item-sender">{{ message.sender }}</span>
+      <span class="message-item-subject">{{ message.subject }}</span>
+    </div>
+    <div class="message-item-body">
+      {{ message.body }}
+    </div>
+  </div>
+</div>
+<div class="message-details">
+  <h3 *ngIf="selectedMessage">Message Details</h3>
+  <div *ngIf="selectedMessage">
+    <div><strong>From:</strong> {{ selectedMessage.sender }}</div>
+    <div><strong>Subject:</strong> {{ selectedMessage.subject }}</div>
+    <div><strong>Body:</strong> {{ selectedMessage.body }}</div>
+  </div>
+</div>
+
+

@@ -7,6 +7,7 @@ import {CreateUserComponent} from "./platform/create-user/create-user.component"
 import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {WagersComponent} from "./wagers/wagers.component";
+import {InboxComponent} from "./inbox/inbox.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,15 @@ const routes: Routes = [
       { path: 'users', component: CreateUserComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'wagers', component: WagersComponent },
+      { path: 'inbox', component: InboxComponent },
       { path: 'settings', component: SettingsComponent },
+    ]},
+  { path: 'inbox', component: InboxComponent,
+    children: [
+      { path: 'Inbox', component: DashboardComponent },
+      { path: 'Drafts', component: CreateUserComponent },
+      { path: 'Sent Items', component: ProfileComponent },
+      { path: 'Deleted Items', component: WagersComponent },
     ]}
 ];
 

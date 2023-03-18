@@ -33,6 +33,7 @@ import {
   SocialLoginModule
 } from "@abacritt/angularx-social-login";
 import {HttpClientModule} from "@angular/common/http";
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {HttpClientModule} from "@angular/common/http";
     CreateUserComponent,
     SettingsComponent,
     WagersComponent,
+    InboxComponent,
 
   ],
   imports: [
