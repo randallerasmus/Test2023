@@ -1,65 +1,18 @@
-<mat-card style="margin-bottom: 100px">
-  <mat-card-content>Create a Wager</mat-card-content>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Pokemon</mat-label>
-    <mat-select [formControl]="pokemonControl">
-      <mat-option>-- None --</mat-option>
-      <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
-                    [disabled]="group.disabled">
-        <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-          {{pokemon.viewValue}}
-        </mat-option>
-      </mat-optgroup>
-    </mat-select>
-  </mat-form-field>
-</mat-card>
-<mat-divider></mat-divider>
 <mat-card>
-
-  <div>
-    <input type="checkbox" name="category" value="sports" [(ngModel)]="isSportsSelected"> Sports<br>
-    <div *ngIf="isSportsSelected">
-      <select name="sportType" [(ngModel)]="selectedSportType">
-        <option value="soccer">Soccer</option>
-        <option value="rugby">Rugby</option>
-        <option value="ufc">UFC</option>
-        <option value="boxing">Boxing</option>
-        <option value="formula1">Formula 1</option>
-      </select>
-    </div>
-  </div>
-
-  <div>
-    <input type="checkbox" name="category" value="politics" [(ngModel)]="isPoliticsSelected"> Politics<br>
-    <div *ngIf="isPoliticsSelected">
-      <select name="politicsType" [(ngModel)]="selectedPoliticsType">
-        <option value="american">American</option>
-        <option value="african">African</option>
-        <option value="european">European</option>
-      </select>
-    </div>
-  </div>
+  <mat-toolbar color="primary">
+    <span>Create a wager</span>
+  </mat-toolbar>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Type of sport that is live</mat-label>
+      <input matInput #searchInput (input)="onSearch(searchInput.value)">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="game">
+        <mat-header-cell *matHeaderCellDef>Game</mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game }}</mat-cell>
+      </ng-container>
+      <mat-row *matRowDef="let row; columns: ['game']"></mat-row>
+    </mat-table>
+  </mat-card-content>
 </mat-card>
-
-<input type="text" [(ngModel)]="query">
-<button (click)="search()">Search</button>
-
-<!--<table>-->
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th>Date</th>-->
-<!--    <th>Home Team</th>-->
-<!--    <th>Away Team</th>-->
-<!--    <th>Status</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let match of matches">-->
-<!--    <td>{{ match.event_date }}</td>-->
-<!--    <td>{{ match.homeTeam.team_name }}</td>-->
-<!--    <td>{{ match.awayTeam.team_name }}</td>-->
-<!--    <td>{{ match.status }}</td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
