@@ -5,14 +5,44 @@
   <mat-card-content>
     <mat-form-field>
       <mat-label>Type of sport that is live</mat-label>
-      <input matInput #searchInput (input)="onSearch(searchInput.value)">
+      <input matInput #searchInput (input)="onSearch(searchInput.value)" />
     </mat-form-field>
+    <mat-card *ngIf="selectedGame">
+      <mat-card-header>
+        <mat-card-title>{{ selectedGame.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Date: {{ selectedGame.date }}</p>
+        <p>Location: {{ selectedGame.location }}</p>
+        <p>Additional Info: {{ selectedGame.addl_info }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addGame()">
+          Start the Wager
+        </button>
+      </mat-card-actions>
+    </mat-card>
     <mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="game">
-        <mat-header-cell *matHeaderCellDef>Game</mat-header-cell>
-        <mat-cell *matCellDef="let game">{{ game }}</mat-cell>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let game" (click)="onGameSelect(game)">
+          {{ game.name }}
+        </mat-cell>
       </ng-container>
-      <mat-row *matRowDef="let row; columns: ['game']"></mat-row>
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.date }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.location }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="addl_info">
+        <mat-header-cell *matHeaderCellDef>Additional Info</mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.addl_info }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let game; columns: displayedColumns;"></mat-row>
     </mat-table>
   </mat-card-content>
 </mat-card>
