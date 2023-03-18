@@ -6,6 +6,10 @@
   flex: 1 1 auto;
 }
 
+/*.spacer {*/
+/*  flex: 1;*/
+/*}*/
+
 .icon-button {
   margin-left: 8px;
 }
@@ -20,3 +24,11 @@
 .admin-dashboard {
    cursor: pointer;
 }
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
