@@ -32,6 +32,7 @@ import {
   SocialAuthServiceConfig,
   SocialLoginModule
 } from "@abacritt/angularx-social-login";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import {
     MatToolbarModule,
     MatListModule,
     MatTableModule,
+    HttpClientModule,
     SocialLoginModule,
     ReactiveFormsModule,
     MatSelectModule,
