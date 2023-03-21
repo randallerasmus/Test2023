@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import { WagerService } from './services/wager.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import {getWagerEvent, WagerState} from './reducers/wager.reducer';
+import { LoadWagers } from './actions/wager.actions';
 import { Game } from './models/game.model';
-import {select, State, Store} from "@ngrx/store";
-import {WagerActions} from "./actions";
-
+import { getWagerData } from './reducers/wager.reducer';
+import {WagerService} from "./services/wager.service";
 
 @Component({
   selector: 'app-wagers',
@@ -12,21 +13,31 @@ import {WagerActions} from "./actions";
   styleUrls: ['./wagers.component.css']
 })
 export class WagersComponent implements OnInit {
-
+  wagerState$: Observable<any> | undefined;
   games: Game[] = [];
   selectedGame: any;
 
   dataSource = new BehaviorSubject<Game[]>([]);
   displayedColumns: string[] = ['name', 'date', 'location'];
 
-  constructor(protected _store: Store<State<any>>,
-    private gameService: WagerService) {}
+  constructor(
+    private gameService: WagerService,
+    private _store: Store<{ wager: WagerState }>
+  ) {
+    this.games = [];
+  }
 
   ngOnInit() {
-    this._store.dispatch(new WagerActions.LoadWagers(''))
+    this._store.dispatch(new LoadWagers(''));
+    this.wagerState$ = this._store.pipe(select(getWagerData));
+    this.wagerState$.subscribe(wagerState => {
+      console.log('console 1', wagerState)
+      this.games = wagerState;
+    });
+
     this.gameService.getGlobalGames().subscribe(
       response => {
-        console.log(response);
+        console.log('console 2', response)
         this.games = response;
       },
       error => {
@@ -58,7 +69,6 @@ export class WagersComponent implements OnInit {
       this.displayedColumns = ['name', 'date', 'location', 'addl_info'];
       this.dataSource.next([...this.dataSource.value, this.selectedGame]);
       this.selectedGame = '';
-
     }
   }
 }
