@@ -6,12 +6,12 @@ import { Game } from "../models/game.model";
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class WagerService {
   private apiUrl = 'https://jsonplaceholder.typicode.com/users';
 
   constructor(private http: HttpClient) {}
 
-  getLiveGames(): Observable<Game[]> {
+  getGlobalGames(): Observable<Game[]> {
     // const httpOptions = {
     //   headers: new HttpHeaders({
     //     'X-RapidAPI-Key': '308e7d235dmshd8178ac919a97a1p158811jsn2ac7376a74e6',
