@@ -34,6 +34,7 @@ import {
 } from "@abacritt/angularx-social-login";
 import {HttpClientModule} from "@angular/common/http";
 import { InboxComponent } from './inbox/inbox.component';
+import {StoreModule} from "@ngrx/store";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { InboxComponent } from './inbox/inbox.component';
 
   ],
   imports: [
+    StoreModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

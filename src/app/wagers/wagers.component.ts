@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { GameService } from './services/game.service';
+import {BehaviorSubject, Observable} from 'rxjs';
+import { WagerService } from './services/wager.service';
 import { Game } from './models/game.model';
+import {select, State, Store} from "@ngrx/store";
+import {WagerActions} from "./actions";
+
 
 @Component({
   selector: 'app-wagers',
@@ -9,16 +12,19 @@ import { Game } from './models/game.model';
   styleUrls: ['./wagers.component.css']
 })
 export class WagersComponent implements OnInit {
+
   games: Game[] = [];
   selectedGame: any;
 
   dataSource = new BehaviorSubject<Game[]>([]);
   displayedColumns: string[] = ['name', 'date', 'location'];
 
-  constructor(private gameService: GameService) {}
+  constructor(protected _store: Store<State<any>>,
+    private gameService: WagerService) {}
 
   ngOnInit() {
-    this.gameService.getLiveGames().subscribe(
+    this._store.dispatch(new WagerActions.LoadWagers(''))
+    this.gameService.getGlobalGames().subscribe(
       response => {
         console.log(response);
         this.games = response;
