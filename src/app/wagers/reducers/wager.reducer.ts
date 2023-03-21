@@ -60,5 +60,12 @@ export const getEntityState = createSelector(
   (state: WagerState) => state
 );
 
-export const getWagerData = (key: string) =>
-  createSelector(getEntityState, (state) => state[key]);
+export const getWagerData = createSelector(
+  getWagerState,
+  (state: WagerState) => state
+);
+
+export const getWagerEvent = createSelector(
+  getWagerState,
+  (state: WagerState) => state.wagerEvent
+);
