@@ -10,46 +10,27 @@ import {SocialAuthService} from "@abacritt/angularx-social-login";
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit{
+  mailbox = {
+    inbox: 10,
+    sent: 5,
+    draft: 3,
+    spam: 1,
+    trash: 0
+  };
 
-  user: any;
-  selectedMessage: any;
-  constructor() {}
+  showReplyBox: boolean = false;
 
   ngOnInit() {
-
   }
-  messages: Message[] = [
-    {
-      id: 1,
-      sender: 'John Doe',
-      subject: 'Hello',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      timestamp: new Date(),
-      isRead: true,
-      isStarred: false
-    },
-    {
-      id: 2,
-      sender: 'Jane Smith',
-      subject: 'Meeting Reminder',
-      body: 'Just a reminder that we have a meeting tomorrow at 2pm.',
-      timestamp: new Date(),
-      isRead: true,
-      isStarred: false
-    },
-    {
-      id: 3,
-      sender: 'Bob Johnson',
-      subject: 'Project Update',
-      body: 'Here is an update on the progress of the project.',
-      timestamp: new Date(),
-      isRead: true,
-      isStarred: false
-    }
-  ];
-  onSelect(message: Message): void {
+
+  // Define the variable to store the selected message
+  selectedMessage: any;
+
+  // Define the function to open a message
+  openMessage(message: any) {
     this.selectedMessage = message;
   }
+
 
 
 
