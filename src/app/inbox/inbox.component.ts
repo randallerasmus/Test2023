@@ -18,6 +18,8 @@ export class InboxComponent implements OnInit{
     trash: 0
   };
 
+  showReplyBox: boolean = false;
+
   ngOnInit() {
   }
 
