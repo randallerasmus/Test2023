@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { Message } from './models/inbox.model';
 import {MatSidenav} from "@angular/material/sidenav";
 import {Router} from "@angular/router";
@@ -10,6 +10,8 @@ import {SocialAuthService} from "@abacritt/angularx-social-login";
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit{
+  @ViewChild('drawer', { static: true })
+  drawer!: MatSidenav;
   mailbox = {
     inbox: 10,
     sent: 5,
@@ -21,6 +23,7 @@ export class InboxComponent implements OnInit{
   showReplyBox: boolean = false;
 
   ngOnInit() {
+  this.drawer.toggle();
   }
 
   // Define the variable to store the selected message
