@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SocialUser} from "ngx-social-login";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +14,7 @@ export class DashboardComponent implements OnInit{
   loggedIn: boolean | undefined;
   userInfoForm: FormGroup;
   constructor(private router: Router,
-              private authService: SocialAuthService,
-              private fb: FormBuilder) {
+                           private fb: FormBuilder) {
     this.userInfoForm = this.fb.group({
       firstName: ['', Validators.required],
       surname: ['', Validators.required],
@@ -30,13 +29,6 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
 
-    this.userInfoForm.get('firstName')?.setValue(this.user?.firstName)
-    this.userInfoForm.get('surname')?.setValue(this.user?.lastName)
-    this.userInfoForm.get('email')?.setValue(this.user?.email)
   }
 }

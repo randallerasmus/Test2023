@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
-import { take } from 'rxjs/operators';
-import {SocialUser} from "@abacritt/angularx-social-login";
+import { Client, Account, ID } from "appwrite";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Store} from "@ngrx/store";
+
 
 @Component({
   selector: 'app-login',
@@ -12,62 +13,47 @@ import {SocialUser} from "@abacritt/angularx-social-login";
 export class LoginComponent implements OnInit {
 
   user: any;
-  loggedIn = false;
 
-  constructor(
-    private router: Router,
-    private authService: SocialAuthService
-  ) {}
-
-  ngOnInit(): void {
-    this.authService.authState.subscribe((user:SocialUser) => {
-      this.user = user;
-      this.loggedIn = !!user;
-      console.log('User:', this.user);
-      this.goToPlatform();
+  loginForm: FormGroup | any;
+  constructor(private formBuilder: FormBuilder, private store: Store, private router: Router,
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
-  async signInWithGoogle(): Promise<void> {
-    try {
-      const user = await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-      console.log('Google login:', user);
-      if (user) {
-        this.loggedIn = true;
-        this.router.navigateByUrl('/platform/dashboard');
-        await this.getUserDetails();
-      }
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
+  ngOnInit(): void {
+  }
+
+  public handleSignIn(): void {
+    console.log(' login here')
+    let payload = {
+      email : this.loginForm?.value.email,
+      password: this.loginForm?.value.password
     }
-  }
 
-  async getUserDetails(): Promise<void> {
-    try {
-      const user = await this.authService.authState.pipe(take(1)).toPromise();
-      if (user) {
-        this.user = user;
-      }
-    } catch (error) {
-      console.error('Error getting user details:', error);
-    }
-  }
+    const client = new Client();
+    const account = new Account(client);
 
-  signInWithFacebook(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
+    client
+      .setEndpoint('http://localhost/v1/account/sessions/email') // Your API Endpoint
+      .setProject('641e255ae3b55c785351') // Your project ID
+    ;
 
-  signOut(): void {
-    this.authService.signOut();
-  }
+    const promise = account.createEmailSession(payload.email, payload.password);
 
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  public goToPlatform(): void {
-    if (this.loggedIn) {
+    promise.then((response) => {
       this.router.navigate(['/platform']);
-    }
+      console.log(response); // Success
+    }, function (error) {
+      console.log(error); // Failure
+      alert('Your details does not match our records'+ error)
+    });
+
+  }
+
+  registration() {
+    this.router.navigate(['/register']);
   }
 }

@@ -8,10 +8,12 @@ import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {WagersComponent} from "./wagers/wagers.component";
 import {InboxComponent} from "./inbox/inbox.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'platform', component: PlatformComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },

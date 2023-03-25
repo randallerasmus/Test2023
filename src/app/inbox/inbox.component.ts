@@ -1,8 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { Message } from './models/inbox.model';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
-import {Router} from "@angular/router";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
+
 
 @Component({
   selector: 'app-inbox',
@@ -33,8 +31,4 @@ export class InboxComponent implements OnInit{
   openMessage(message: any) {
     this.selectedMessage = message;
   }
-
-
-
-
 }

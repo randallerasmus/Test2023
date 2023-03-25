@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -26,15 +25,10 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSelectModule} from "@angular/material/select";
 import { WagersComponent } from './wagers/wagers.component';
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider, GoogleSigninButtonModule,
-  SocialAuthServiceConfig,
-  SocialLoginModule
-} from "@abacritt/angularx-social-login";
 import {HttpClientModule} from "@angular/common/http";
 import { InboxComponent } from './inbox/inbox.component';
 import {StoreModule} from "@ngrx/store";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +41,7 @@ import {StoreModule} from "@ngrx/store";
     SettingsComponent,
     WagersComponent,
     InboxComponent,
+    RegisterComponent,
 
   ],
   imports: [
@@ -69,34 +64,12 @@ import {StoreModule} from "@ngrx/store";
     MatListModule,
     MatTableModule,
     HttpClientModule,
-    SocialLoginModule,
     ReactiveFormsModule,
     MatSelectModule,
-    GoogleSigninButtonModule
+
   ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '892351818219-uimfqju00t6c2q3q1627805krlet3fj6.apps.googleusercontent.com'
-            )
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId')
-          }
-        ],
-        onError: (err) => {
-          console.error(err);
-        }
-      } as SocialAuthServiceConfig,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

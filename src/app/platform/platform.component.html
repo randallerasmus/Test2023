@@ -33,6 +33,10 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav mode="side" [opened]="false">
     <mat-nav-list>
+      <a mat-list-item routerLink="/platform/wagers" routerLinkActive="active-link">
+        <mat-icon style="margin: 2px 0px -5px 0px">attach_money</mat-icon>
+        <span style="padding: 10px 10px 10px 12px">Wagers</span>
+      </a>
       <a mat-list-item routerLink="/platform/dashboard" routerLinkActive="active-link">
         <mat-icon style="margin: 2px 0px -5px 0px">home</mat-icon>
         <span style="padding: 10px 10px 10px 12px">Dashboard</span>
@@ -40,10 +44,6 @@
       <a mat-list-item routerLink="/platform/users" routerLinkActive="active-link">
         <mat-icon style="margin: 2px 0px -5px 0px">people</mat-icon>
         <span style="padding: 10px 10px 10px 12px">Users</span>
-      </a>
-      <a mat-list-item routerLink="/platform/wagers" routerLinkActive="active-link">
-        <mat-icon style="margin: 2px 0px -5px 0px">attach_money</mat-icon>
-        <span style="padding: 10px 10px 10px 12px">Wagers</span>
       </a>
       <a mat-list-item routerLink="/platform/profile" routerLinkActive="active-link">
         <mat-icon style="margin: 2px 0px -5px 0px">person</mat-icon>
