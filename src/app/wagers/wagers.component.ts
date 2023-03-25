@@ -33,6 +33,7 @@ export class WagersComponent implements OnInit {
     this.wagerState$.subscribe(wagerState => {
       console.log('console 1', wagerState)
       this.games = wagerState;
+      console.log('console 1', wagerState)
     });
 
     this.gameService.getGlobalGames().subscribe(
@@ -48,6 +49,7 @@ export class WagersComponent implements OnInit {
 
   onSearch(query: string) {
     if (query) {
+      console.log('query data', query)
       // Filter games based on search query
       const filteredGames = this.games.filter(game =>
         game.name.toLowerCase().includes(query.toLowerCase())

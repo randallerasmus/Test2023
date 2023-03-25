@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {Router} from "@angular/router";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-platform',
@@ -14,14 +13,11 @@ export class PlatformComponent implements OnInit{
   user: any;
   loggedIn = false;
   constructor(private router: Router,
-              private authService: SocialAuthService,) {}
+             ) {}
 
   ngOnInit() {
     this.router.navigate(['/platform/dashboard']);
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
+
     }
 
   toggleSidenav() {

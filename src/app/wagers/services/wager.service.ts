@@ -18,7 +18,7 @@ export class WagerService {
     //     'X-RapidAPI-Host': 'sportscore1.p.rapidapi.com'
     //   })
     // };
-
+    console.log('data', this.apiUrl)
     return this.http.get<Game[]>(this.apiUrl);
   }
 }

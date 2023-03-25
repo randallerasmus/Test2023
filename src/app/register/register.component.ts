@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit{
     const client = new Client();
     client
       .setEndpoint('http://localhost/v1') // Your Appwrite Endpoint
-      .setProject('')
+      .setProject('641e255ae3b55c785351')
     ;
     console.log('Signing up');
     const account = new Account(client)
