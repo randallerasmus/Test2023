@@ -1,5 +1,6 @@
 
 import {Action} from '@ngrx/store';
+import {GameCollection} from "../models/game.model";
 
 export enum ActionTypes {
   CREATE_WAGER = '[WagerService] Create Wager',
@@ -37,14 +38,12 @@ export class CreateWagerFailed implements Action {
  **********************************************************************/
 export class LoadWagers implements Action {
   readonly type = ActionTypes.LOAD_WAGERS;
-  constructor(public payload: any) {
-  }
+
 }
 
 export class LoadWagersSuccess implements Action {
   readonly type = ActionTypes.LOAD_WAGERS_SUCCESS;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LoadWagersFailed implements Action {
