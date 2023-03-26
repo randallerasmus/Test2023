@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://www.bbc.co.uk/sport/football/tables",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

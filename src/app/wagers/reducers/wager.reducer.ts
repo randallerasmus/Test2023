@@ -1,50 +1,79 @@
-import { Actions, ActionTypes } from '../actions/wager.actions';
-import {createFeatureSelector, createSelector} from "@ngrx/store";
+import {Actions, ActionTypes, LoadWagersSuccess, LoadWagersFailed, LoadWagers} from '../actions/wager.actions';
+import {Action, createFeatureSelector, createSelector} from "@ngrx/store";
+import {Game} from "../models/game.model";
 
-export interface WagerState {
+
+
+export interface AppState {
+  loaded: boolean;
+  wagerData: {
+    loading: boolean;
+    error: any;
+    games: Game[] | null;
+  };
   ids: string[];
-  wagerEvent: any;
-  wagerAmount: any;
-  wagerOutcome: any;
-  wagerPlacedBy: any;
-  wagerDatePlaced: any;
-  wagerAcceptedBy: any;
-  wagerDateAccepted: any;
-  [key: string]: any;
+  entities: {[key: string]: any};
 }
 
-export const initialState: WagerState = {
+export const initialState: AppState = {
   ids: [],
-  wagerEvent: null,
-  wagerAmount: null,
-  wagerOutcome: null,
-  wagerPlacedBy: null,
-  wagerDatePlaced: null,
-  wagerAcceptedBy: null,
-  wagerDateAccepted: null,
+  entities: [],
+  loaded: false,
+  wagerData: {
+    loading: false,
+    error: null,
+    games: []
+  }
 };
 
-export function WagerReducer(
-  state: WagerState = initialState,
-  action: Actions
-): WagerState {
+export function WagerReducer(state = initialState, action:  LoadWagers | LoadWagersSuccess | LoadWagersFailed): AppState {
+  if (!state || !state.wagerData) {
+    return state;
+  }
   switch (action.type) {
-    case ActionTypes.CREATE_WAGER:
+    case ActionTypes.LOAD_WAGERS: {
+      console.log('LOAD_WAGERS action is being called');
       return {
         ...state,
+        wagerData: {
+          ...state.wagerData,
+          loading: true,
+          error: null
+        }
       };
-    case ActionTypes.CREATE_WAGER_SUCCESS:
+    }
+
+    case ActionTypes.LOAD_WAGERS_SUCCESS: {
+      console.log('Reducer games:', (action as LoadWagersSuccess).payload.games);
       return {
         ...state,
-        ids: state.ids.concat(action.payload.id),
-        wagerEvent: action.payload.wagerEvent,
-        wagerAmount: action.payload.wagerAmount,
-        wagerOutcome: action.payload.wagerOutcome,
-        wagerPlacedBy: action.payload.wagerPlacedBy,
-        wagerDatePlaced: action.payload.wagerDatePlaced,
-        wagerAcceptedBy: action.payload.wagerAcceptedBy,
-        wagerDateAccepted: action.payload.wagerDateAccepted,
+        wagerData: {
+          ...state.wagerData,
+          loading: false,
+          games: (action as LoadWagersSuccess).payload.games
+        },
+        loaded: true,
+         ids:
+          state.ids?.indexOf('wagerResponse') < 0
+            ? [...state.ids, 'wagerResponse']
+            : state.ids,
+        entities: Object.assign({}, state.entities, {
+          ['wagerResponse']: action.payload,
+        }),
       };
+    }
+
+    case ActionTypes.LOAD_WAGERS_FAILED: {
+      console.log('LOAD_WAGERS_FAILED action is being called');
+      return {
+        ...state,
+        wagerData: {
+          ...state.wagerData,
+          loading: false,
+          error: (action as LoadWagersFailed).payload.error
+        }
+      };
+    }
     default:
       return state;
   }
@@ -52,20 +81,20 @@ export function WagerReducer(
 /////////////////////////////////////////////////////////////////////////
 //  Selectors                                                          //
 /////////////////////////////////////////////////////////////////////////
-export const getWagerState =
-  createFeatureSelector<WagerState>('global-wager-state');
+export const getWagerState = createFeatureSelector<AppState>('wager');
 
 export const getEntityState = createSelector(
   getWagerState,
-  (state: WagerState) => state
+  (state: AppState) => state.entities
 );
 
 export const getWagerData = createSelector(
   getWagerState,
-  (state: WagerState) => state
+  (state: AppState) => {
+    console.log("Wager data selector: ", state && state.wagerData && state.wagerData.games ? state.wagerData.games : []);
+    return state && state.wagerData && state.wagerData.games ? state.wagerData.games : [];
+  }
 );
 
-export const getWagerEvent = createSelector(
-  getWagerState,
-  (state: WagerState) => state.wagerEvent
-);
+export const getWagerDataSelected = (key: string) =>
+  createSelector(getEntityState, (entities) => entities[key]);

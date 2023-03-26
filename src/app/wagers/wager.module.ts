@@ -12,7 +12,7 @@ import {WagerReducer} from "./reducers/wager.reducer";
   imports: [
     CommonModule,
 
-    StoreModule.forFeature('global-wager-state', WagerReducer),
+    StoreModule.forFeature('wager', WagerReducer),
     EffectsModule.forFeature([WagerEffects])
   ]
 })

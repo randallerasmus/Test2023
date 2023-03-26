@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import {getWagerEvent, WagerState} from './reducers/wager.reducer';
 import { LoadWagers } from './actions/wager.actions';
 import { Game } from './models/game.model';
-import { getWagerData } from './reducers/wager.reducer';
-import {WagerService} from "./services/wager.service";
+import {getWagerData, getWagerDataSelected} from './reducers/wager.reducer';
+import { WagerService } from './services/wager.service';
+import { HttpClient } from '@angular/common/http';
+import { WagerReducer} from "./reducers";
 
 @Component({
   selector: 'app-wagers',
@@ -13,47 +14,60 @@ import {WagerService} from "./services/wager.service";
   styleUrls: ['./wagers.component.css']
 })
 export class WagersComponent implements OnInit {
-  wagerState$: Observable<any> | undefined;
+  wagerState$: Observable<Game[]> | undefined;
   games: Game[] = [];
   selectedGame: any;
-
   dataSource = new BehaviorSubject<Game[]>([]);
-  displayedColumns: string[] = ['name', 'date', 'location'];
+  displayedColumns: string[] = ['date', 'team1', 'team2', 'time'];
 
   constructor(
+    private http: HttpClient,
     private gameService: WagerService,
-    private _store: Store<{ wager: WagerState }>
+    private _store: Store<{ wager: { games: Game[] } }>
   ) {
     this.games = [];
   }
 
   ngOnInit() {
-    this._store.dispatch(new LoadWagers(''));
-    this.wagerState$ = this._store.pipe(select(getWagerData));
-    this.wagerState$.subscribe(wagerState => {
-      console.log('console 1', wagerState)
-      this.games = wagerState;
-      console.log('console 1', wagerState)
-    });
+    console.log('dispatching LoadWagers');
+    this._store.dispatch(new LoadWagers());
 
-    this.gameService.getGlobalGames().subscribe(
-      response => {
-        console.log('console 2', response)
-        this.games = response;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this._store.pipe(select(getWagerData))
+      .subscribe((result) => {
+        this.games = result;
+      });
+
+    this._store
+      .pipe(
+        select(
+          WagerReducer.getWagerDataSelected(
+            'wagerResponse'
+          )
+        )
+      )
+      .subscribe((result) => {
+        if (result) {
+          this.games = result;
+        }
+      });
+
+    // this.gameService.getWagers().subscribe(
+    //   response => {
+    //     console.log('console 2', response)
+    //     this.games = response;
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   onSearch(query: string) {
     if (query) {
-      console.log('query data', query)
       // Filter games based on search query
-      const filteredGames = this.games.filter(game =>
-        game.name.toLowerCase().includes(query.toLowerCase())
-      );
+      const filteredGames = this.games.filter(game => {
+        return game.team1.toLowerCase().includes(query.toLowerCase());
+      });
 
       // Update the component's games array with the filtered games
       this.dataSource.next(filteredGames);
@@ -62,13 +76,14 @@ export class WagersComponent implements OnInit {
     }
   }
 
+
   onGameSelect(game: Game) {
     this.selectedGame = game;
   }
 
   addGame() {
     if (this.selectedGame) {
-      this.displayedColumns = ['name', 'date', 'location', 'addl_info'];
+      this.displayedColumns = ['date', 'team1', 'team2', 'time'];
       this.dataSource.next([...this.dataSource.value, this.selectedGame]);
       this.selectedGame = '';
     }

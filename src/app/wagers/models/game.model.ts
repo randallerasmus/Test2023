@@ -1,9 +1,11 @@
 export interface Game {
-  id: number;
-  name: string;
-  sport: string;
-  startTime: Date;
+  time:string;
   date: string;
-  location: string;
-  addl_info: string;
+  team1:string;
+  team2:string;
+}
+
+export interface GameCollection {
+  games: Game[];
+  wagers: Game[];
 }
