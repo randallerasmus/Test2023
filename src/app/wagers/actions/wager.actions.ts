@@ -1,6 +1,5 @@
-
-import {Action} from '@ngrx/store';
-import {GameCollection} from "../models/game.model";
+import { createAction, props, Action } from '@ngrx/store';
+import {WagerInterface} from "../models/wager.model";
 
 export enum ActionTypes {
   CREATE_WAGER = '[WagerService] Create Wager',
@@ -15,44 +14,41 @@ export enum ActionTypes {
  * Create New Wager Actions
  **********************************************************************/
 
-export class CreateWager implements Action {
-  readonly type = ActionTypes.CREATE_WAGER;
-  constructor(public payload: any) {
-  }
-}
+export const createWager = createAction(
+  ActionTypes.CREATE_WAGER,
+  props<{ payload: any }>()
+);
 
-export class CreateWagerSuccess implements Action {
-  readonly type = ActionTypes.CREATE_WAGER_SUCCESS;
-  constructor(public payload: any) {
-  }
-}
+export const createWagerSuccess = createAction(
+  ActionTypes.CREATE_WAGER_SUCCESS,
+  props<{ payload: any }>()
+);
 
-export class CreateWagerFailed implements Action {
-  readonly type = ActionTypes.CREATE_WAGER_FAILED;
-  constructor(public payload: any) {
-  }
-}
+export const createWagerFailed = createAction(
+  ActionTypes.CREATE_WAGER_FAILED,
+  props<{ payload: any }>()
+);
 
 /**********************************************************************
  * Load Existing Wagers Actions
  **********************************************************************/
-export class LoadWagers implements Action {
-  readonly type = ActionTypes.LOAD_WAGERS;
 
-}
+export const loadWagers = createAction(
+  ActionTypes.LOAD_WAGERS
+);
 
-export class LoadWagersSuccess implements Action {
-  readonly type = ActionTypes.LOAD_WAGERS_SUCCESS;
-  constructor(public payload: any) {}
-}
+export const loadWagersSuccess = createAction(
+  ActionTypes.LOAD_WAGERS_SUCCESS,
+  props<{ payload: { games: WagerInterface[] } }>()
+);
 
-export class LoadWagersFailed implements Action {
-  readonly type = ActionTypes.LOAD_WAGERS_FAILED;
-  constructor(public payload: any) {
-  }
-}
+export const loadWagersFailed = createAction(
+  ActionTypes.LOAD_WAGERS_FAILED,
+  props<{ payload: { error: any } }>()
+);
 
 export type Actions =
-            CreateWager | CreateWagerSuccess | CreateWagerFailed |
-            LoadWagers | LoadWagersSuccess | LoadWagersFailed;
+  ReturnType<typeof createWager> | ReturnType<typeof createWagerSuccess> | ReturnType<typeof createWagerFailed> |
+  ReturnType<typeof loadWagers> | ReturnType<typeof loadWagersSuccess> | ReturnType<typeof loadWagersFailed>;
+
 
