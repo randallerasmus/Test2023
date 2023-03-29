@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { LoadWagers } from './actions/wager.actions';
-import { Game } from './models/game.model';
-import {getWagerData, getWagerDataSelected} from './reducers/wager.reducer';
+import {getWagerData } from './reducers/wager.reducer';
 import { WagerService } from './services/wager.service';
 import { HttpClient } from '@angular/common/http';
-import { WagerReducer} from "./reducers";
+import {loadWagers} from "./actions/wager.actions";
+import {WagerInterface} from "./models/wager.model";
 
 @Component({
   selector: 'app-wagers',
@@ -14,41 +13,26 @@ import { WagerReducer} from "./reducers";
   styleUrls: ['./wagers.component.css']
 })
 export class WagersComponent implements OnInit {
-  wagerState$: Observable<Game[]> | undefined;
-  games: Game[] = [];
+  wagerState$: Observable<WagerInterface[]> | undefined;
+  games: WagerInterface[] = [];
   selectedGame: any;
-  dataSource = new BehaviorSubject<Game[]>([]);
+  dataSource = new BehaviorSubject<WagerInterface[]>([]);
   displayedColumns: string[] = ['date', 'team1', 'team2', 'time'];
 
   constructor(
     private http: HttpClient,
     private gameService: WagerService,
-    private _store: Store<{ wager: { games: Game[] } }>
-  ) {
+    private _store: Store) {
     this.games = [];
   }
 
   ngOnInit() {
     console.log('dispatching LoadWagers');
-    this._store.dispatch(new LoadWagers());
+    this._store.dispatch(loadWagers());
 
     this._store.pipe(select(getWagerData))
       .subscribe((result) => {
         this.games = result;
-      });
-
-    this._store
-      .pipe(
-        select(
-          WagerReducer.getWagerDataSelected(
-            'wagerResponse'
-          )
-        )
-      )
-      .subscribe((result) => {
-        if (result) {
-          this.games = result;
-        }
       });
 
     // this.gameService.getWagers().subscribe(
@@ -77,7 +61,7 @@ export class WagersComponent implements OnInit {
   }
 
 
-  onGameSelect(game: Game) {
+  onGameSelect(game: WagerInterface) {
     this.selectedGame = game;
   }
 

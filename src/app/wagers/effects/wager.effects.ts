@@ -1,39 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import {
   ActionTypes,
-  CreateWager,
-  CreateWagerSuccess,
-  CreateWagerFailed,
-  LoadWagers,
-  LoadWagersSuccess,
-  LoadWagersFailed
+  loadWagers,
+  loadWagersSuccess,
+  loadWagersFailed
 } from '../actions/wager.actions';
-import {WagerService} from "../services/wager.service";
-import {Game} from "../models/game.model";
+import { WagerService } from "../services/wager.service";
+import { WagerInterface } from "../models/wager.model";
+import {Action} from "@ngrx/store";
 
 @Injectable()
 export class WagerEffects {
 
-  constructor(private actions$: Actions,
-              private _wagerService: WagerService  ) {}
+  constructor(
+    private actions$: Actions,
+    private _wagerService: WagerService
+  ) {}
 
-  loadAdditionalCodeEntries$ = createEffect(() =>
+  loadWagers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ActionTypes.LOAD_WAGERS),
-      mergeMap((action: LoadWagers) =>
-        this._wagerService
-          .getWagers()
-          .pipe(
-            map(
-              (response: Game[]) =>
-                new LoadWagersSuccess(response)
-            ),
-            catchError((error) => of(new LoadWagersFailed(error)))
-          )
+      mergeMap((action: Action) =>
+        this._wagerService.getWagers().pipe(
+          map((response: any) =>
+            new loadWagersSuccess(action.type)
+          ),
+          catchError((error) => of(new loadWagersFailed( error )))
+        )
       )
     )
   );
