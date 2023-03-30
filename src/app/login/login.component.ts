@@ -12,6 +12,7 @@ import {Store} from "@ngrx/store";
 })
 export class LoginComponent implements OnInit {
 
+  // this is the login form
   user: any;
 
   loginForm: FormGroup | any;
