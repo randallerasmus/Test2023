@@ -21,6 +21,8 @@ export class WagerEffects {
     private _wagerService: WagerService
   ) {}
 
+  // @ts-ignore
+  // @ts-ignore
   loadWagers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ActionTypes.LOAD_WAGERS),
