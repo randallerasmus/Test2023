@@ -1,12 +1,29 @@
 <mat-card>
   <mat-toolbar color="primary">
-    <span>Create a wager</span>
+    <span>SEARCH WAGER</span>
   </mat-toolbar>
   <mat-card-content>
     <mat-form-field>
-      <mat-label>Search for A Wager</mat-label>
+      <mat-label>Search</mat-label>
       <input matInput #searchInput (input)="onSearch(searchInput.value)" />
     </mat-form-field>
+    <mat-card *ngIf="selectedGame">
+      <mat-card-header>
+        <mat-card-title>{{ selectedGame.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Date: {{ selectedGame.date }}</p>
+        <p>Home Team: {{ selectedGame.team1 }}</p>
+        <p>Away Team: {{ selectedGame.team2 }}</p>
+        <p>Time: {{ selectedGame.time }}</p>
+        <p>Predicted Outcome: {{ selectedGame.time }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addGame()">
+          Start the Wager
+        </button>
+      </mat-card-actions>
+    </mat-card>
     <mat-card *ngIf="selectedGame">
       <mat-card-header>
         <mat-card-title>{{ selectedGame.name }}</mat-card-title>
