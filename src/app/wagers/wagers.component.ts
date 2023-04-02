@@ -27,12 +27,10 @@ export class WagersComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('dispatching LoadWagers');
-    this._store.dispatch(
-      { type: '[Wager] Load Wagers'}
-    );
 
-    this._store.select('showGames')
+    this._store.dispatch({ type: '[Wager] Load Wagers'});
+
+    this._store.select('wagers')
       .subscribe((result) => {
         this.games = result;
       });
