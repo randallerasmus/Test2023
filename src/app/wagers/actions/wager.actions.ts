@@ -34,7 +34,8 @@ export const createWagerFailed = createAction(
  **********************************************************************/
 
 export const loadWagers = createAction(
-  ActionTypes.LOAD_WAGERS
+  ActionTypes.LOAD_WAGERS,
+
 );
 
 export const loadWagersSuccess = createAction(

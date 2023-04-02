@@ -13,8 +13,9 @@
       </mat-card-header>
       <mat-card-content>
         <p>Date: {{ selectedGame.date }}</p>
-        <p>Location: {{ selectedGame.location }}</p>
-        <p>Additional Info: {{ selectedGame.addl_info }}</p>
+        <p>Home Team: {{ selectedGame.team1 }}</p>
+        <p>Away Team: {{ selectedGame.team2 }}</p>
+        <p>Time: {{ selectedGame.time }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="addGame()">

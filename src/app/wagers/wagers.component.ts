@@ -1,41 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { WagerService } from './services/wager.service';
 import { HttpClient } from '@angular/common/http';
 import {loadWagers} from "./actions/wager.actions";
 import {WagerInterface} from "./models/wager.model";
+import {isSubscription} from "rxjs/internal/Subscription";
 
 @Component({
   selector: 'app-wagers',
   templateUrl: './wagers.component.html',
   styleUrls: ['./wagers.component.css']
 })
-export class WagersComponent implements OnInit {
+export class WagersComponent implements OnInit, OnDestroy {
   wagerState$: Observable<WagerInterface[]> | undefined;
   games: WagerInterface[] = [];
   selectedGame: any;
   dataSource = new BehaviorSubject<WagerInterface[]>([]);
   displayedColumns: string[] = ['date', 'team1', 'team2', 'time'];
+  protected _subscriptions: Subscription[] = [];
+  private _gameSubscription: Subscription = new Subscription();
+
 
   constructor(
     private http: HttpClient,
     private gameService: WagerService,
     private _store: Store<any>) {
-    this.games = [];
+
   }
 
   ngOnInit() {
-    console.log('dispatching LoadWagers');
-    this._store.dispatch(
-      { type: '[Wager] Load Wagers'}
-    );
 
-    this._store.select('showGames')
+    this._store.dispatch({ type: '[Wager] Load Wagers'});
+
+    const _gamesSubscription = this._store.select('showGames')
       .subscribe((result) => {
-        this.games = result;
+        console.log('what is result', result)
+        this.games = result.showGames;
       });
+    this._subscriptions.push(_gamesSubscription);
 
     // this.gameService.getWagers().subscribe(
     //   response => {
@@ -49,16 +53,19 @@ export class WagersComponent implements OnInit {
   }
 
   onSearch(query: string) {
-    if (query) {
-      // Filter games based on search query
-      const filteredGames = this.games.filter(game => {
-        return game.team1.toLowerCase().includes(query.toLowerCase());
-      });
+    console.log('gamens', this.games)
+    if(this.games){
+      if (query) {
+        // Filter games based on search query
+        const filteredGames = this.games.filter(game => {
+          return game.team1.toLowerCase().includes(query.toLowerCase());
+        });
 
-      // Update the component's games array with the filtered games
-      this.dataSource.next(filteredGames);
-    } else {
-      this.dataSource.next([]);
+        // Update the component's games array with the filtered games
+        this.dataSource.next(filteredGames);
+      } else {
+        this.dataSource.next([]);
+      }
     }
   }
 
@@ -73,5 +80,14 @@ export class WagersComponent implements OnInit {
       this.dataSource.next([...this.dataSource.value, this.selectedGame]);
       this.selectedGame = '';
     }
+  }
+
+  ngOnDestroy() {
+    this._gameSubscription.unsubscribe();
+    this._subscriptions.forEach((subscription) => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    });
   }
 }
