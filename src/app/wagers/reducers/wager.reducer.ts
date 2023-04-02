@@ -3,16 +3,15 @@ import { WagerInterface } from "../models/wager.model";
 import * as WagerActions from '../actions/wager.actions'
 import {ActionTypes} from "../actions/wager.actions";
 import {state} from "@angular/animations";
-// export interface AppState {
-//
-//   wagers: {
-//     loading: boolean;
-//     error: any;
-//     wager: WagerInterface[] | null;
-//   };
-//   ids: string[];
-//   entities: {[key: string]: any};
-// }
+export interface WagerState {
+  wagers: {
+    loading: boolean;
+    error: any;
+    wager: WagerInterface[] | null;
+  };
+  games: string[];
+  entities: {[key: string]: any};
+}
 //
 // export const initialState: AppState = {
 //   ids: [],
