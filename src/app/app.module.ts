@@ -29,8 +29,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { InboxComponent } from './inbox/inbox.component';
 import {StoreModule} from "@ngrx/store";
 import { RegisterComponent } from './register/register.component';
-import {WagerReducer} from "./wagers/reducers";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {WagerModule} from "./wagers/wager.module";
 
 @NgModule({
   declarations: [
@@ -41,13 +41,12 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     ProfileComponent,
     CreateUserComponent,
     SettingsComponent,
-    WagersComponent,
     InboxComponent,
     RegisterComponent,
 
   ],
   imports: [
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({},{}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -61,6 +60,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,
+    WagerModule,
     MatCheckboxModule,
     MatMenuModule,
     MatDividerModule,

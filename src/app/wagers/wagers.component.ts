@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import {getWagerData } from './reducers/wager.reducer';
+
 import { WagerService } from './services/wager.service';
 import { HttpClient } from '@angular/common/http';
 import {loadWagers} from "./actions/wager.actions";
@@ -22,15 +22,17 @@ export class WagersComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private gameService: WagerService,
-    private _store: Store) {
+    private _store: Store<any>) {
     this.games = [];
   }
 
   ngOnInit() {
     console.log('dispatching LoadWagers');
-    this._store.dispatch(loadWagers());
+    this._store.dispatch(
+      { type: '[Wager] Load Wagers'}
+    );
 
-    this._store.pipe(select(getWagerData))
+    this._store.select('showGames')
       .subscribe((result) => {
         this.games = result;
       });

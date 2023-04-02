@@ -1,87 +1,47 @@
-import { createFeatureSelector, createSelector} from "@ngrx/store";
+import {createAction, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import { WagerInterface } from "../models/wager.model";
 import * as WagerActions from '../actions/wager.actions'
 import {ActionTypes} from "../actions/wager.actions";
-export interface AppState {
-  loaded: boolean;
-  wagerData: {
-    loading: boolean;
-    error: any;
-    wager: WagerInterface[] | null;
-  };
-  ids: string[];
-  entities: {[key: string]: any};
+import {state} from "@angular/animations";
+// export interface AppState {
+//
+//   wagers: {
+//     loading: boolean;
+//     error: any;
+//     wager: WagerInterface[] | null;
+//   };
+//   ids: string[];
+//   entities: {[key: string]: any};
+// }
+//
+// export const initialState: AppState = {
+//   ids: [],
+//   entities: [],
+//   showGames: {
+//     date: any,
+//     team1: any,
+//     team2: any,
+//     time: any
+//   }
+// };
+
+export const wagerReducer = createReducer(
+  {  showGames:[
+      {
+      date: '',
+      team1: '',
+      team2: '',
+      time: ''
 }
+    ]
 
-export const initialState: AppState = {
-  ids: [],
-  entities: [],
-  loaded: false,
-  wagerData: {
-    loading: false,
-    error: null,
-    wager: []
-  }
-};
-
-export function WagerReducer(state = initialState, action: WagerActions.Actions): AppState {
-  if (!state || !state.wagerData) {
-    return state;
-  }
-  switch (action.type) {
-    case WagerActions.loadWagers.type: {
-      return {
-        ...state,
-        wagerData: {
-          ...state.wagerData,
-          loading: true,
-          error: null
-        }
-      };
+    },
+  on(createAction('[Wager] Load Wagers'), state => {
+    console.log('original state: '+ JSON.stringify(state));
+    return {
+      ...state,
+      showGames : []
     }
+  })
+)
 
-    case WagerActions.loadWagersSuccess.type: {
-      return {
-        ...state,
-        wagerData: {
-          ...state.wagerData,
-          loading: false,
-          wager: action.payload.games
-        },
-      };
-    }
-
-    case WagerActions.loadWagersFailed.type: {
-
-      return {
-        ...state,
-        wagerData: {
-          ...state.wagerData,
-          loading: false,
-          error: action.payload.error
-        }
-      };
-    }
-    default:
-      return state;
-  }
-}
-/////////////////////////////////////////////////////////////////////////
-//  Selectors                                                          //
-/////////////////////////////////////////////////////////////////////////
-export const getWagerState = createFeatureSelector<AppState>('wager');
-
-export const getEntityState = createSelector(
-  getWagerState,
-  (state: AppState) => state.entities
-);
-
-export const getWagerData = createSelector(
-  getWagerState,
-  (state: AppState) => {
-    return state && state.wagerData && state.wagerData.wager ? state.wagerData.wager : [];
-  }
-);
-
-export const getWagerDataSelected = (key: string) =>
-  createSelector(getEntityState, (entities) => entities[key]);
