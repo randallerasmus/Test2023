@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
-import { Store, select } from '@ngrx/store';
-
+import { Store } from '@ngrx/store';
 import { WagerService } from './services/wager.service';
 import { HttpClient } from '@angular/common/http';
-import {loadWagers} from "./actions/wager.actions";
 import {WagerInterface} from "./models/wager.model";
-import {isSubscription} from "rxjs/internal/Subscription";
+import {State} from "./reducers/wager.reducer";
+import *  as WagerActions from '../wagers/actions/wager.actions'
+
 
 @Component({
   selector: 'app-wagers',
@@ -17,6 +17,7 @@ export class WagersComponent implements OnInit, OnDestroy {
   wagerState$: Observable<WagerInterface[]> | undefined;
   games: WagerInterface[] = [];
   selectedGame: any;
+
   dataSource = new BehaviorSubject<WagerInterface[]>([]);
   displayedColumns: string[] = ['date', 'team1', 'team2', 'time'];
   protected _subscriptions: Subscription[] = [];
@@ -26,18 +27,18 @@ export class WagersComponent implements OnInit, OnDestroy {
   constructor(
     private http: HttpClient,
     private gameService: WagerService,
-    private _store: Store<any>) {
+    private _store: Store<State>) {
 
   }
 
   ngOnInit() {
 
-    this._store.dispatch({ type: '[Wager] Load Wagers'});
+    this._store.dispatch(WagerActions.loadWagers());
 
-    const _gamesSubscription = this._store.select('showGames')
+    const _gamesSubscription = this._store.select("wagers")
       .subscribe((result) => {
         console.log('what is result', result)
-        this.games = result.showGames;
+        this.games = result.games;
       });
     this._subscriptions.push(_gamesSubscription);
 
