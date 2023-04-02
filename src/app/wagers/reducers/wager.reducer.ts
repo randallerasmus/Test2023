@@ -1,8 +1,11 @@
-import {createAction, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
+import {createAction, createReducer, on} from "@ngrx/store";
 import { WagerInterface } from "../models/wager.model";
-import * as WagerActions from '../actions/wager.actions'
-import {ActionTypes} from "../actions/wager.actions";
-import {state} from "@angular/animations";
+import * as AppState from '../../state/app.state'
+
+export interface State extends AppState.State {
+  wagers: WagerState;
+}
+
 export interface WagerState {
   wagers: {
     loading: boolean;
@@ -12,17 +15,6 @@ export interface WagerState {
   games: string[];
   entities: {[key: string]: any};
 }
-//
-// export const initialState: AppState = {
-//   ids: [],
-//   entities: [],
-//   showGames: {
-//     date: any,
-//     team1: any,
-//     team2: any,
-//     time: any
-//   }
-// };
 
 export const wagerReducer = createReducer(
   {  showGames:[

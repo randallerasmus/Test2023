@@ -23,16 +23,17 @@ export class WagersComponent implements OnInit {
     private http: HttpClient,
     private gameService: WagerService,
     private _store: Store<any>) {
-    this.games = [];
+
   }
 
   ngOnInit() {
 
     this._store.dispatch({ type: '[Wager] Load Wagers'});
 
-    this._store.select('wagers')
+    this._store.select('showGames')
       .subscribe((result) => {
-        this.games = result;
+        console.log('what is result', result)
+        this.games = result.showGames;
       });
 
     // this.gameService.getWagers().subscribe(
@@ -47,16 +48,19 @@ export class WagersComponent implements OnInit {
   }
 
   onSearch(query: string) {
-    if (query) {
-      // Filter games based on search query
-      const filteredGames = this.games.filter(game => {
-        return game.team1.toLowerCase().includes(query.toLowerCase());
-      });
+    console.log('gamens', this.games)
+    if(this.games){
+      if (query) {
+        // Filter games based on search query
+        const filteredGames = this.games.filter(game => {
+          return game.team1.toLowerCase().includes(query.toLowerCase());
+        });
 
-      // Update the component's games array with the filtered games
-      this.dataSource.next(filteredGames);
-    } else {
-      this.dataSource.next([]);
+        // Update the component's games array with the filtered games
+        this.dataSource.next(filteredGames);
+      } else {
+        this.dataSource.next([]);
+      }
     }
   }
 
