@@ -34,12 +34,8 @@ export class WagersComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this._store.dispatch(WagerActions.loadWagers());
-      console.log('ne stor', this._store)
-
-    const _gamesSubscription = this._store.select("wagers")
+        const _gamesSubscription = this._store.select("wagers")
       .subscribe((result) => {
-
-        console.log('what is result', result.currentGame)
         this.games = result.games;
       });
     this._subscriptions.push(_gamesSubscription);
