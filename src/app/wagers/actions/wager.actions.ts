@@ -48,8 +48,5 @@ export const loadWagersFailed = createAction(
   props<{ payload: { error: any } }>()
 );
 
-export type Actions =
-  ReturnType<typeof createWager> | ReturnType<typeof createWagerSuccess> | ReturnType<typeof createWagerFailed> |
-  ReturnType<typeof loadWagers> | ReturnType<typeof loadWagersSuccess> | ReturnType<typeof loadWagersFailed>;
 
 
