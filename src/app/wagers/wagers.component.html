@@ -1,66 +1,33 @@
 <mat-card>
-  <mat-toolbar color="primary">
-    <span>SEARCH WAGER</span>
-  </mat-toolbar>
+  <mat-card-title>Search for a Game</mat-card-title>
   <mat-card-content>
-    <mat-form-field>
-      <mat-label>Search</mat-label>
-      <input matInput #searchInput (input)="onSearch(searchInput.value)" />
-    </mat-form-field>
-    <mat-card *ngIf="selectedGame">
-      <mat-card-header>
-        <mat-card-title>{{ selectedGame.name }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Date: {{ selectedGame.date }}</p>
-        <p>Home Team: {{ selectedGame.team1 }}</p>
-        <p>Away Team: {{ selectedGame.team2 }}</p>
-        <p>Time: {{ selectedGame.time }}</p>
-        <p>Predicted Outcome: {{ selectedGame.time }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="addGame()">
-          Start the Wager
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card *ngIf="selectedGame">
-      <mat-card-header>
-        <mat-card-title>{{ selectedGame.name }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Date: {{ selectedGame.date }}</p>
-        <p>Home Team: {{ selectedGame.team1 }}</p>
-        <p>Away Team: {{ selectedGame.team2 }}</p>
-        <p>Time: {{ selectedGame.time }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="addGame()">
-          Start the Wager
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-        <mat-cell *matCellDef="let game" (click)="onGameSelect(game)">
-          {{ game.date }}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="team1">
-        <mat-header-cell *matHeaderCellDef>Team1</mat-header-cell>
-        <mat-cell *matCellDef="let game">{{ game.team1 }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="team2">
-        <mat-header-cell *matHeaderCellDef>Team2</mat-header-cell>
-        <mat-cell *matCellDef="let game">{{ game.team2 }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="time">
-        <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
-        <mat-cell *matCellDef="let game">{{ game.time }}</mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let game; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <form [formGroup]="gamesForm">
+      <mat-form-field>
+        <input matInput formControlName="searchQuery" placeholder="Enter teams, date, or location">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="searchForGames()">Search</button>
+    </form>
+    <div *ngIf="searchResults">
+      <mat-table [dataSource]="searchResults">
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+          <mat-cell *matCellDef="let result">{{result.date}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="team1">
+          <mat-header-cell *matHeaderCellDef>Team 1</mat-header-cell>
+          <mat-cell *matCellDef="let result">{{result.team1}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="team2">
+          <mat-header-cell *matHeaderCellDef>Team 2</mat-header-cell>
+          <mat-cell *matCellDef="let result">{{result.team2}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="time">
+          <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+          <mat-cell *matCellDef="let result">{{result.time}}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="['date', 'team1', 'team2', 'time']"></mat-header-row>
+        <mat-row *matRowDef="let result; columns: ['date', 'team1', 'team2', 'time']"></mat-row>
+      </mat-table>
+    </div>
   </mat-card-content>
 </mat-card>

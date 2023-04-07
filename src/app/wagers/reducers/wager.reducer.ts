@@ -1,40 +1,30 @@
-import {createAction, createReducer, on} from "@ngrx/store";
-import { WagerInterface } from "../models/wager.model";
-import * as AppState from '../../state/app.state'
-import *  as WagerActions from '../actions/wager.actions'
+import { createReducer, createSelector, on } from "@ngrx/store";
+import { AppState } from "../../state/app.state"; // import AppState interface
+import * as GameSearchActions from '../actions/wager.actions';
 
-export interface State extends AppState.State {
-  wagers: WagerState;
+export interface GameSearchState {
+  query: string;
+  loading: boolean;
+  games: any[];
+  error: string;
 }
 
-export interface WagerState {
-  games: WagerInterface[];
-  currentGame :WagerInterface[],
-}
+export const initialState: GameSearchState = {
+  query: '',
+  loading: false,
+  games: [],
+  error: ''
+};
 
-const initialState: WagerState = {
-  currentGame: [],
-  games:[]
-}
+export const wagerReducer = createReducer(
+  initialState,
+  on(GameSearchActions.setSearchQuery, (state, { query }) => ({ ...state, query })),
+  on(GameSearchActions.searchGames, (state) => ({ ...state, loading: true })),
+  on(GameSearchActions.searchGamesSuccess, (state, { response }) => ({ ...state, loading: false, response })),
+  on(GameSearchActions.searchGamesFailure, (state, { error }) => ({ ...state, loading: false, error }))
+);
 
-export const wagerReducer = createReducer<WagerState>(initialState ,
-  on(WagerActions.loadWagers, (state) : WagerState => {
-    console.log('loadWager state: '+ JSON.stringify(state));
-    return {
-      ...state,
-      games : []
-    };
-  }),
-  on(WagerActions.loadWagersSuccess, (state,action) : WagerState => {
-    console.log('loadWager Success state '+ JSON.stringify(state));
-    return {
-      ...state,
-      currentGame :[{
-        date: '2012-10-23',
-        team1: 'Manchester City',
-        team2: 'Manchester City',
-        time: '15h00'
-      }]
-  }})
-)
-
+export const selectGameSearchQuery = createSelector(
+  (state: AppState) => state.gameSearch,
+  (gameSearch) => gameSearch
+);
