@@ -2,6 +2,7 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {WagerInterface} from "../models/wager.model";
+import {Game} from "../../state/app.state";
 
 
 @Injectable({
@@ -12,14 +13,8 @@ export class WagerService {
 
   constructor(private http: HttpClient) {}
 
-  getWagers(): Observable<WagerInterface[]> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'X-RapidAPI-Key': '308e7d235dmshd8178ac919a97a1p158811jsn2ac7376a74e6',
-    //     'X-RapidAPI-Host': 'sportscore1.p.rapidapi.com'
-    //   })
-    // };
-    console.log('data', this.apiUrl)
-    return this.http.get<WagerInterface[]>(this.apiUrl);
+  getWagers(query: any): Observable<Game[]> {
+    const url = `${this.apiUrl}/wagers?query=${query}`;
+    return this.http.get<Game[]>(url);
   }
 }
