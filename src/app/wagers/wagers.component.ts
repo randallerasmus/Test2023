@@ -38,7 +38,7 @@ export class WagersComponent  implements OnInit {
 
   searchForGames() {
     const query = this.gamesForm?.get('searchQuery')?.value;
-    console.log('query', query)
+
     this.store.dispatch(setSearchQuery({query}));
     this.store.dispatch(searchGames({query}));
   }
