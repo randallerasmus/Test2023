@@ -12,9 +12,12 @@ export class DashboardComponent implements OnInit{
 
   user: SocialUser | undefined;
   loggedIn: boolean | undefined;
-  userInfoForm: FormGroup;
+  userInfoForm: any;
   constructor(private router: Router,
                            private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
     this.userInfoForm = this.fb.group({
       firstName: ['', Validators.required],
       surname: ['', Validators.required],
@@ -26,9 +29,5 @@ export class DashboardComponent implements OnInit{
       shortname: ['', Validators.required],
       projects: ['', Validators.required],
     });
-  }
-
-  ngOnInit() {
-
   }
 }
