@@ -1,8 +1,53 @@
 .example-card {
   max-width: 400px;
 }
-
-.example-header-image {
-  background-image: url('https://scontent-jnb1-1.xx.fbcdn.net/v/t1.6435-1/133812401_2516345192005825_3180119057513949253_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=SBO1i9AOul4AX8eGYpE&_nc_ht=scontent-jnb1-1.xx&oh=00_AfD_RETU7rnVO23zvO9YS07O7QpXnizcjkkgb5Wz3AdplA&oe=645F4D67');
-  background-size: cover;
+.form-fields-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
 }
+
+.form-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.form-field-label {
+  margin-bottom: 5px;
+}
+
+.form-field-input {
+  display: inline-block;
+  width: 300%;
+}
+
+.form-field-input-textArea {
+
+  width: 300%;
+}
+
+.form-field-width {
+  width: calc(33.33% - 10px);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons a {
+  color: #333;
+  margin: 0 5px;
+}
+
+.social-icons a:hover {
+  color: #1da1f2;
+}
+
+.update-button {
+  width: 200px;
+  height: 40px;
+}
+
