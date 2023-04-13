@@ -1,11 +1,10 @@
 <div style="display: flex; flex-wrap: wrap;">
-  <div style="margin-right: 20px;">
-    <mat-card class="example-card" style="border-radius: 15px; width: 300px; height: 250px;">
+  <div class="profile-section" style="margin-right: 20px;">
+    <mat-card class="example-card" style="border-radius: 5px; width: 300px; height: 250px;">
       <img mat-card-image [src]="'https://scontent-jnb1-1.xx.fbcdn.net/v/t1.6435-1/133812401_2516345192005825_3180119057513949253_n.jpg?stp=dst-jpg_p200x200&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=SBO1i9AOul4AX8eGYpE&_nc_ht=scontent-jnb1-1.xx&oh=00_AfDINA5MRDQcAs6RdQzssDW07rNTDCKGlejkRi8Ipdst8Q&oe=645F4D67'" alt="Photo of a Shiba Inu" style="display:block; margin:auto;padding-top: 5px; border-radius:50%; width: 150px; height: 150px;">
       <mat-card-content style="text-align: center;">
         <h1 style="font-weight: bolder;padding-top: 20px">Randall</h1>
       </mat-card-content>
-      <p style="text-align: center;">Guest</p>
     </mat-card>
   </div>
 
@@ -20,7 +19,7 @@
         <div class="form-fields-container">
           <div class="form-field">
             <div class="form-field-label">
-              <mat-label>Company(Disabled)</mat-label>
+              <mat-label>Company(disabled)</mat-label>
             </div>
             <div class="form-field-input">
               <mat-form-field appearance="outline" class="form-field-width">
@@ -126,9 +125,8 @@
               <mat-label>About Me</mat-label>
             </div>
             <div  class="form-field-input-textArea" >
-              <mat-form-field appearance="outline">
-                <mat-label>Textarea</mat-label>
-                <textarea matInput></textarea>
+              <mat-form-field appearance="outline" style="width: 30%">
+              <textarea matInput></textarea>
               </mat-form-field>
             </div>
           </div>
