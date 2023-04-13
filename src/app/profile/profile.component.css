@@ -1,48 +1,8 @@
-.profile {
-  display: flex;
-  align-items: center;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.example-card {
+  max-width: 400px;
 }
 
-.profile-image {
-  margin-right: 20px;
-}
-
-.profile-image img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.profile-details h2 {
-  margin-top: 0;
-}
-
-.profile-details p {
-  margin: 5px 0;
-}
-
-.profile-picture {
-  display: block;
-  margin: 0 auto;
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  width: 200px;
-}
-
-.profile-card {
-  width: 50%;
-  height: 50%;
+.example-header-image {
+  background-image: url('https://scontent-jnb1-1.xx.fbcdn.net/v/t1.6435-1/133812401_2516345192005825_3180119057513949253_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=SBO1i9AOul4AX8eGYpE&_nc_ht=scontent-jnb1-1.xx&oh=00_AfD_RETU7rnVO23zvO9YS07O7QpXnizcjkkgb5Wz3AdplA&oe=645F4D67');
+  background-size: cover;
 }
