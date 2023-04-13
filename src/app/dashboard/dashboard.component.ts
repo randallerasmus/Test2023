@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit{
 
   user: SocialUser | undefined;
   loggedIn: boolean | undefined;
-  userInfoForm?: FormGroup;
+  userInfoForm: any = {};
   constructor(private router: Router,
                            private fb: FormBuilder) {
 
