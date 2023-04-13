@@ -1,52 +1,56 @@
-<div class="profile-pic">
-  <img [src]="imageUrl || 'assets/profile.jpg'" alt="Profile Picture" *ngIf="imageUrl"
-       style="border-radius: 50%; width: 180px; height: 170px;">
-  <label for="file-input">
-    <mat-icon>camera_alt</mat-icon>
-  </label>
-  <input id="file-input" type="file" (change)="onFileSelected($event)" style="display: none;">
-</div>
-<mat-divider></mat-divider>
-
-
-
-<div class="user-profile">
-    <h2>{{UserName}}</h2>
-    <hr>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="firstName">First Name:</label>
-          <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" name="firstName">
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name:</label>
-          <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" name="lastName">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="phone">Phone:</label>
-          <input type="tel" class="form-control" id="phone" [(ngModel)]="phone" name="phone">
-        </div>
-        <div class="form-group">
-          <label for="address">Address:</label>
-          <input type="text" class="form-control" id="address" [(ngModel)]="address" name="address">
-        </div>
-        <div class="form-group">
-          <label for="city">City:</label>
-          <input type="text" class="form-control" id="city" [(ngModel)]="city" name="city">
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-primary" (click)="saveProfile()">Save</button>
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="margin-right: 20px;">
+    <mat-card class="example-card" style="border-radius: 20px; width: 300px; height: 250px;">
+      <img mat-card-image [src]="'https://scontent-jnb1-1.xx.fbcdn.net/v/t1.6435-1/133812401_2516345192005825_3180119057513949253_n.jpg?stp=dst-jpg_p200x200&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=SBO1i9AOul4AX8eGYpE&_nc_ht=scontent-jnb1-1.xx&oh=00_AfDINA5MRDQcAs6RdQzssDW07rNTDCKGlejkRi8Ipdst8Q&oe=645F4D67'" alt="Photo of a Shiba Inu" style="display:block; margin:auto;padding-top: 5px; border-radius:50%; width: 150px; height: 150px;">
+      <mat-card-content style="text-align: center;">
+        <h1 style="font-weight: bolder;padding-top: 20px">Randall</h1>
+      </mat-card-content>
+      <p style="text-align: center;">Guest</p>
+    </mat-card>
   </div>
 
+  <div style="flex: 1;padding-top: 15%;padding-bottom: 2%">
+    <mat-card  class="user-profile">
 
+      <mat-card-content>
+        <!-- row with 3 colums-->
+        <div fxLayout="row" >
+          <div style="margin-right: 10px;">
+            <div>
+              <mat-label>Company</mat-label>
+              <p>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Placeholder">
 
+                </mat-form-field>
+              </p>
+            </div>
+          </div>
+          <div style="margin-right: 10px;">
+            <div>
+              <mat-label>Username</mat-label>
+              <p>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Placeholder">
 
+                </mat-form-field>
+              </p>
+            </div>
+          </div>
+          <div >
+            <div>
+              <mat-label>Email Address</mat-label>
+              <p>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Placeholder">
 
+                </mat-form-field>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

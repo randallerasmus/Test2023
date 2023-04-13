@@ -12,10 +12,9 @@ export class DashboardComponent implements OnInit{
 
   user: SocialUser | undefined;
   loggedIn: boolean | undefined;
-  userInfoForm: any = {};
+  userInfoForm: any;
   constructor(private router: Router,
                            private fb: FormBuilder) {
-
   }
 
   ngOnInit() {
