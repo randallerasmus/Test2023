@@ -10,11 +10,16 @@ import {Game} from "../../state/app.state";
 })
 export class WagerService {
   private apiUrl = 'https://f0f4aae5-4a95-47c1-9e96-b946c4a56e1f.mock.pstmn.io/tms-users/v1/users';
+  private soccerGames = 'https://oscore.opera-api.com/q/tournament_events';
 
   constructor(private http: HttpClient) {}
 
   getWagers(query: any): Observable<Game[]> {
     const url = `${this.apiUrl}/wagers?query=${query}`;
     return this.http.get<Game[]>(url);
+  }
+  getGames(query: any) {
+    const url = `${this.soccerGames}?tournament_id=${query}`;
+    return this.http.get<any>(url);
   }
 }
