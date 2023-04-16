@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {selectGameSearchQuery} from "./reducers/wager.reducer";
 import {searchGames, setSearchQuery} from "./actions/wager.actions";
@@ -39,9 +39,13 @@ export class WagersComponent  implements OnInit {
   }
 
   ngOnInit() {
-// there is a tournament_id -- just search on https://www.apex-football.com/scores/england/premier-league-442590/
+    // there is a tournament_id -- just search on https://www.apex-football.com/scores/england/premier-league-442590/
     // just update the tournament_id
-
+    this.searchFormGroup = this.formBuilder.group({
+      event: [''],
+      sport: [''],
+      league: [''],
+    });
 
   }
 
@@ -49,8 +53,6 @@ export class WagersComponent  implements OnInit {
     this._wagerService.getGames('442590').subscribe(
       response => {
         this.searchResults = new MatTableDataSource(response.events.filter((event: any) => event.status !== 'finished'));
-        console.log('soccergames', this.searchResults.data);
-
       },
       error => console.error(error)
     );

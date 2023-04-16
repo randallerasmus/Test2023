@@ -1,13 +1,13 @@
 <mat-card-title-group>
   <mat-toolbar color="primary" class="wager-home-toolbar">
-    <span style="padding: 5px;">Create Wagers</span>
+    <span>Create Wagers</span>
   </mat-toolbar>
 </mat-card-title-group>
 <div class="field-actions" [formGroup]="searchFormGroup">
   <div class="fields" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="3%">
     <mat-form-field appearance="outline" class="events-dropdown" >
       <mat-label>Select Event</mat-label>
-      <mat-select >
+      <mat-select formControlName="event" >
         <mat-option value="sport">Sport</mat-option>
         <mat-option value="politics"> Politics </mat-option>
       </mat-select>
@@ -15,7 +15,7 @@
 
     <mat-form-field appearance="outline" class="sport-dropdown">
       <mat-label>Select Sport</mat-label>
-      <mat-select >
+      <mat-select formControlName="sport" >
         <mat-option value="">Select Sport</mat-option>
         <mat-option value="soccer">Soccer</mat-option>
         <mat-option value="rugby">Rugby</mat-option>
@@ -30,7 +30,7 @@
 
     <mat-form-field appearance="outline" class="league-dropdown" >
             <mat-label>Select League</mat-label>
-            <mat-select >
+            <mat-select formControlName="league" >
               <mat-option value="">Select League</mat-option>
               <mat-option value="championsLeague">Champions League</mat-option>
               <mat-option value="premierLeague">Premier League</mat-option>
