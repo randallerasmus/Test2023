@@ -3,3 +3,74 @@ mat-card {
   margin: 0 auto;
   text-align: center;
 }
+
+.full-width-table {
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.home-message {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+
+.wager-home-toolbar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  width: 99%;
+}
+
+.field-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  width: 90%;
+}
+
+.fields {
+  padding: 28px 9px 16px 16px ;
+  display: flex;
+  justify-content: space-between;
+}
+.my-custom-field {
+  padding: 5px;
+}
+
+.clear {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0px 5px;
+  color: #015C95;
+}
+
+.actions {
+  width: 84%;
+  display: flex;
+  justify-content: normal;
+  padding: 15px 21px 8px 13px;
+}
+.search {
+  margin-left: 15px;
+}
+
+.events-dropdown {
+  padding-right: 15px;
+}
+
+.sport-dropdown {
+  padding-right: 15px;
+}
+
+.league-dropdown {
+  padding-right: 15px;
+}
