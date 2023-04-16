@@ -16,7 +16,7 @@ export class PlatformComponent implements OnInit{
              ) {}
 
   ngOnInit() {
-    this.router.navigate(['/platform/dashboard']);
+    this.router.navigate(['/platform/profile']);
 
     }
 

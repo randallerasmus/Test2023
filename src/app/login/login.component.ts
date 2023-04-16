@@ -28,29 +28,30 @@ export class LoginComponent implements OnInit {
   }
 
   public handleSignIn(): void {
-    console.log(' login here')
-    let payload = {
-      email : this.loginForm?.value.email,
-      password: this.loginForm?.value.password
-    }
-
-    const client = new Client();
-    const account = new Account(client);
-
-    client
-      .setEndpoint('http://localhost/v1/account/sessions/email') // Your API Endpoint
-      .setProject('641e255ae3b55c785351') // Your project ID
-    ;
-
-    const promise = account.createEmailSession(payload.email, payload.password);
-
-    promise.then((response) => {
-      this.router.navigate(['/platform']);
-      console.log(response); // Success
-    }, function (error) {
-      console.log(error); // Failure
-      alert('Your details does not match our records'+ error)
-    });
+    this.router.navigate(['/platform']);
+    // console.log(' login here')
+    // let payload = {
+    //   email : this.loginForm?.value.email,
+    //   password: this.loginForm?.value.password
+    // }
+    //
+    // const client = new Client();
+    // const account = new Account(client);
+    //
+    // client
+    //   .setEndpoint('http://localhost/v1/account/sessions/email') // Your API Endpoint
+    //   .setProject('641e255ae3b55c785351') // Your project ID
+    // ;
+    //
+    // const promise = account.createEmailSession(payload.email, payload.password);
+    //
+    // promise.then((response) => {
+    //
+    //   console.log(response); // Success
+    // }, function (error) {
+    //   console.log(error); // Failure
+    //   alert('Your details does not match our records'+ error)
+    // });
 
   }
 

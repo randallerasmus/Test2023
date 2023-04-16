@@ -6,7 +6,8 @@ import {searchGames, setSearchQuery} from "./actions/wager.actions";
 import {AppState} from "../state/app.state";
 import {Store} from "@ngrx/store";
 import {WagerService} from "./services/wager.service";
-
+import { DatePipe } from '@angular/common';
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-wagers',
@@ -17,10 +18,16 @@ export class WagersComponent  implements OnInit {
 
   gamesForm: FormGroup;
   searchQuery$: Observable<any>;
-  searchResults: any[] = [];
+  searchResults!: MatTableDataSource<any>;
+  soccerGames: any;
+  expandedRow = false;
+
+  displayedColumns = ['away_team', 'home_team', 'date', 'time'];
+
 
   constructor(
     private formBuilder: FormBuilder,
+    private datePipe: DatePipe,
     private _wagerService: WagerService,
     private store: Store<AppState>
   ) {
@@ -31,15 +38,25 @@ export class WagersComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(selectGameSearchQuery).subscribe(results => {
-      this.searchResults = results;
-    });
+// there is a tournament_id -- just search on https://www.apex-football.com/scores/england/premier-league-442590/
+    // just update the tournament_id
+
+
   }
 
   searchForGames() {
-    const query = this.gamesForm?.get('searchQuery')?.value;
+    this._wagerService.getGames('489248').subscribe(
+      response => {
+        this.searchResults = new MatTableDataSource(response.events.filter((event: any) => event.status !== 'finished'));
+        console.log('soccergames', this.searchResults.data);
 
-    this.store.dispatch(setSearchQuery({query}));
-    this.store.dispatch(searchGames({query}));
+      },
+      error => console.error(error)
+    );
   }
-}
+
+  onRowClick(event:{name: string}) {
+    this.expandedRow = true;
+  }
+  }
+

@@ -31,6 +31,7 @@ import {StoreModule} from "@ngrx/store";
 import { RegisterComponent } from './register/register.component';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {WagerModule} from "./wagers/wager.module";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -77,7 +78,7 @@ import {WagerModule} from "./wagers/wager.module";
     MatSelectModule,
 
   ],
-  providers: [],
+  providers: [DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
