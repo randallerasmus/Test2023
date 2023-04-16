@@ -23,3 +23,4 @@ export class WagerService {
     return this.http.get<any>(url);
   }
 }
+

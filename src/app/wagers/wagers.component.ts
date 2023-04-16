@@ -23,6 +23,7 @@ export class WagersComponent  implements OnInit {
   expandedRow = false;
 
   displayedColumns = ['away_team', 'home_team', 'date', 'time'];
+  searchFormGroup!: FormGroup;
 
 
   constructor(
@@ -45,7 +46,7 @@ export class WagersComponent  implements OnInit {
   }
 
   searchForGames() {
-    this._wagerService.getGames('489248').subscribe(
+    this._wagerService.getGames('442590').subscribe(
       response => {
         this.searchResults = new MatTableDataSource(response.events.filter((event: any) => event.status !== 'finished'));
         console.log('soccergames', this.searchResults.data);
@@ -58,5 +59,13 @@ export class WagersComponent  implements OnInit {
   onRowClick(event:{name: string}) {
     this.expandedRow = true;
   }
+
+  clearFields() {
+
   }
+
+  retrieveAdditionalCodeEntries(number: number) {
+
+  }
+}
 
