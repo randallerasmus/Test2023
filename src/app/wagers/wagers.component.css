@@ -25,6 +25,7 @@ mat-card {
   font-size: 16px;
   font-weight: 400;
   color: white;
+  margin: 3px 16px 2px 17px;
   width: 99%;
 }
 
@@ -38,7 +39,7 @@ mat-card {
 }
 
 .fields {
-  padding: 28px 9px 16px 16px ;
+  padding: 33px 1px 16px 16px ;
   display: flex;
   justify-content: space-between;
 }
