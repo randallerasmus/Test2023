@@ -13,7 +13,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="sport-dropdown">
+    <mat-form-field appearance="outline" class="sport-dropdown" *ngIf="searchFormGroup.controls['event'].value === 'sport'">
       <mat-label>Select Sport</mat-label>
       <mat-select formControlName="sport" >
         <mat-option value="">Select Sport</mat-option>
@@ -28,7 +28,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="league-dropdown" >
+    <mat-form-field appearance="outline" class="league-dropdown" *ngIf="searchFormGroup.controls['sport'].value === 'soccer'" >
             <mat-label>Select League</mat-label>
             <mat-select formControlName="league" >
               <mat-option value="">Select League</mat-option>
@@ -43,7 +43,7 @@
   <div class="actions">
     <button class="clear" mat-button (click)="clearFields()"> Clear</button>
     <button class="search" mat-button mat-raised-button color="primary"  style="margin-left: 15px"
-            (click)="searchForGames()">Search</button>
+             (click)="searchForGames()">Search</button>
   </div>
 </div>
 <mat-card-content>

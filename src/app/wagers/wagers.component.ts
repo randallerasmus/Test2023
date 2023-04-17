@@ -24,6 +24,7 @@ export class WagersComponent  implements OnInit {
 
   displayedColumns = ['away_team', 'home_team', 'date', 'time'];
   searchFormGroup!: FormGroup;
+  dropdownsSelected = false;
 
 
   constructor(
@@ -63,11 +64,17 @@ export class WagersComponent  implements OnInit {
   }
 
   clearFields() {
-
+    this.searchFormGroup.reset()
   }
 
-  retrieveAdditionalCodeEntries(number: number) {
+  //
+  checkDropdowns() {
+    // [disabled]="!dropdownsSelected" must be added to the button
+    const event = this.searchFormGroup.controls['event'].value;
+    const sport = this.searchFormGroup.controls['sport'].value;
 
+
+    this.dropdownsSelected = !!(event && (!event || sport) && (!sport));
   }
 }
 
