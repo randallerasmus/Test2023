@@ -42,7 +42,7 @@
   </div>
   <div class="actions">
     <button class="clear" mat-button (click)="clearFields()"> Clear</button>
-    <button class="search" mat-button mat-raised-button color="primary"  style="margin-left: 15px"
+    <button class="search" mat-button mat-raised-button color="primary" [disabled]="canSearch()" style="margin-left: 15px"
              (click)="searchForGames()">Search</button>
   </div>
 </div>
