@@ -51,7 +51,8 @@ export class WagersComponent  implements OnInit {
   }
 
   searchForGames() {
-    this._wagerService.getGames('442590').subscribe(
+    const eventSelection = this.searchFormGroup.get('league')?.value
+    this._wagerService.getGames(eventSelection).subscribe(
       response => {
         this.searchResults = new MatTableDataSource(response.events.filter((event: any) => event.status !== 'finished'));
       },
