@@ -75,3 +75,12 @@ mat-card {
 .league-dropdown {
   padding-right: 15px;
 }
+
+.clone-btn {
+  color: red;
+  background-color: transparent;
+  cursor: pointer;
+  resize: block;
+}
+
+
