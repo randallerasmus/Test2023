@@ -22,7 +22,7 @@ export class WagersComponent  implements OnInit {
   soccerGames: any;
   expandedRow = false;
 
-  displayedColumns = ['away_team', 'home_team', 'date', 'time'];
+  displayedColumns = ['away_team', 'home_team', 'date', 'time','actions'];
   searchFormGroup!: FormGroup;
   dropdownsSelected = false;
 
@@ -87,6 +87,19 @@ export class WagersComponent  implements OnInit {
     }else {
       return false;
     }
+  }
+
+  openCloneDialog(): void {
+  //   event.stopPropagation();
+  //
+  //   this.dialog.open(CreateAdditionalCodeComponent, {
+  //     disableClose: true,
+  //     width: '60%',
+  //     data: {
+  //       additionalCode: data,
+  //       isClone: true,
+  //     },
+  //   });
   }
 }
 

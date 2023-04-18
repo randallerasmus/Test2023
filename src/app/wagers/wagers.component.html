@@ -69,8 +69,18 @@
       <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
       <mat-cell *matCellDef="let event">{{ event.time.start * 1000 | date: 'shortTime' }}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Start Wager</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="clone-column">
+        <mat-icon
+          class="clone-btn mat-18"
+          (click)="openCloneDialog()"
+        >casino</mat-icon>
+          </mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let event; columns: displayedColumns;" (click)="onRowClick(event)">
     </mat-row>
   </mat-table>
 </mat-card-content>
+
