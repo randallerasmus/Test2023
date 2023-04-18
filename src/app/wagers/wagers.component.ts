@@ -76,5 +76,16 @@ export class WagersComponent  implements OnInit {
 
     this.dropdownsSelected = !!(event && (!event || sport) && (!sport));
   }
+
+  canSearch() {
+    // --- true disables
+    // --- false enables
+    const canSearchWagers = this.searchFormGroup.get('league')?.pristine
+    if(canSearchWagers){
+      return true;
+    }else {
+      return false;
+    }
+  }
 }
 
