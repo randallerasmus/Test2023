@@ -74,12 +74,12 @@
       <mat-cell *matCellDef="let element" class="clone-column">
         <mat-icon
           class="clone-btn mat-18"
-          (click)="openCloneDialog()"
+          (click)="openCloneDialog(element)"
         >casino</mat-icon>
           </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let event; columns: displayedColumns;" (click)="onRowClick(event)">
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)">
     </mat-row>
   </mat-table>
 </mat-card-content>
