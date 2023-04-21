@@ -1,0 +1,73 @@
+<mat-card >
+  <mat-card-title-group>
+    <mat-toolbar color="primary" class="home-message">
+      <span>Generate Wager</span>
+    </mat-toolbar>
+  </mat-card-title-group>
+</mat-card>
+
+<div style="display: flex; align-items: center; padding-top: 15px">
+  <div style="display: flex; align-items: center; margin-right: 16px;">
+    <mat-icon>sports_soccer</mat-icon>
+    <mat-label>{{setEventType()}}</mat-label>
+  </div>
+
+      <div style="padding: 5px 5px 5px 174px">
+        <mat-label>{{this.data.selectedRow.time.start * 1000 | date: 'mediumDate'}}</mat-label>
+      </div>
+
+      <div style="padding: 5px 5px 5px 4px">
+        <mat-label>{{this.data.selectedRow.time.start * 1000 | date: 'shortTime'}}</mat-label>
+      </div>
+</div>
+
+<mat-divider style="padding: 10px 10px 10px 10px"></mat-divider>
+
+<div style="display: flex; justify-content: space-evenly ;padding-bottom: 19px;">
+  <mat-label>{{this.data.selectedRow.home_team.name}}</mat-label>
+  <img src="{{this.data.selectedRow.home_team.logo_url}}" height="50px" width="20px" alt="{{this.data.selectedRow.home_team.name}} logo">
+  <p style="margin: 0 10px;">VS</p>
+  <mat-label>{{this.data.selectedRow.away_team.name}}</mat-label>
+  <img src="{{this.data.selectedRow.away_team.logo_url}}" height="50px" width="20px" alt="{{this.data.selectedRow.away_team.name}} logo">
+</div>
+
+<mat-divider ></mat-divider>
+<p style="color: black; text-align: center;padding: 13px 1px 0px 1px">EVENT PREDICTION</p>
+<mat-divider></mat-divider>
+
+<div class="form-fields-container">
+  <div class="form-field">
+    <div class="form-field-label">
+      <mat-label style="padding: 40px" >{{this.data.selectedRow.home_team.name}}</mat-label>
+    </div>
+    <div class="form-field-input">
+      <mat-form-field appearance="outline" class="form-field-width">
+        <mat-label >Select Prediction</mat-label>
+        <mat-select formControlName="homeTeamPrediction" (selectionChange)="updateAwayTeamPrediction($event.value)">
+          <mat-option value="1">Win</mat-option>
+          <mat-option value="0">Lose</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-field-label">
+      <mat-label style="padding: 40px">{{this.data.selectedRow.away_team.name}}</mat-label>
+    </div>
+    <div class="form-field-input">
+      <mat-form-field appearance="outline" class="form-field-width">
+        <mat-label >Select Prediction</mat-label>
+        <mat-select formControlName="awayTeamPrediction">
+          <mat-option *ngFor="let option of awayTeamPredictionOptions" [value]="option.value">{{option.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div style="padding: 13px 3px 9px 152px">
+  <button class="cancel" color="warn" mat-raised-button mat-button (click)="cancel()"> Cancel</button>
+  <button class="setPrediction" mat-button mat-raised-button  color="primary" [disabled]="canSetPrediction()" style="margin-left: 15px"
+          (click)="setPrediction()">Set Prediction</button>
+</div>
+
