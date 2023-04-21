@@ -1,0 +1,27 @@
+.home-message {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle
+}
+
+.form-fields-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 18px;
+}
+
+.form-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}

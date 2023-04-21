@@ -19,6 +19,7 @@
 }
 
 .form-field-input {
+  padding-top: 5px;
   display: inline-block;
   width: 300%;
 }

@@ -23,17 +23,20 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
+import { GenerateWagerComponent } from './modules/generate-wager/generate-wager.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
 @NgModule({
-  declarations: [WagersComponent],
+  declarations: [WagersComponent, GenerateWagerComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('showGames', wagerReducer),
     MatCardModule,
     MatTableModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

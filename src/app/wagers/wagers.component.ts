@@ -8,6 +8,8 @@ import {Store} from "@ngrx/store";
 import {WagerService} from "./services/wager.service";
 import { DatePipe } from '@angular/common';
 import {MatTableDataSource} from "@angular/material/table";
+import {MatDialog} from "@angular/material/dialog";
+import {GenerateWagerComponent} from "./modules/generate-wager/generate-wager.component";
 
 @Component({
   selector: 'app-wagers',
@@ -25,11 +27,12 @@ export class WagersComponent  implements OnInit {
   displayedColumns = ['away_team', 'home_team', 'date', 'time','actions'];
   searchFormGroup!: FormGroup;
   dropdownsSelected = false;
+  rowEvent:any;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private datePipe: DatePipe,
+    private datePipe: DatePipe,public dialog: MatDialog,
     private _wagerService: WagerService,
     private store: Store<AppState>
   ) {
@@ -59,23 +62,24 @@ export class WagersComponent  implements OnInit {
       error => console.error(error)
     );
   }
+  openCloneDialog(data : any) {
+    this.dialog.open(GenerateWagerComponent, {
+      width:'500px',
+      height:'410px',
+      data: {
+        selectedRow: data,
+        selectedOptionData: this.searchFormGroup.value
+      },
+    });
+  }
 
-  onRowClick(event:{name: string}) {
-    this.expandedRow = true;
+  onRowClick(event:any) {
+    this.rowEvent = event;
+    console.log('this can open the detail view', this.rowEvent)
   }
 
   clearFields() {
     this.searchFormGroup.reset()
-  }
-
-  //
-  checkDropdowns() {
-    // [disabled]="!dropdownsSelected" must be added to the button
-    const event = this.searchFormGroup.controls['event'].value;
-    const sport = this.searchFormGroup.controls['sport'].value;
-
-
-    this.dropdownsSelected = !!(event && (!event || sport) && (!sport));
   }
 
   canSearch() {
@@ -89,17 +93,6 @@ export class WagersComponent  implements OnInit {
     }
   }
 
-  openCloneDialog(): void {
-  //   event.stopPropagation();
-  //
-  //   this.dialog.open(CreateAdditionalCodeComponent, {
-  //     disableClose: true,
-  //     width: '60%',
-  //     data: {
-  //       additionalCode: data,
-  //       isClone: true,
-  //     },
-  //   });
-  }
+
 }
 
