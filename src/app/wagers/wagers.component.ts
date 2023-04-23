@@ -65,7 +65,7 @@ export class WagersComponent  implements OnInit {
   openCloneDialog(data : any) {
     this.dialog.open(GenerateWagerComponent, {
       width:'500px',
-      height:'410px',
+      height:'450px',
       data: {
         selectedRow: data,
         selectedOptionData: this.searchFormGroup.value
