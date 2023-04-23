@@ -71,10 +71,10 @@
     </ng-container>
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Start Wager</mat-header-cell>
-      <mat-cell *matCellDef="let element" class="clone-column">
+      <mat-cell *matCellDef="let element" class="wager-column">
         <mat-icon
-          class="clone-btn mat-18"
-          (click)="openCloneDialog(element)"
+          class="wager-btn mat-18"
+          (click)="startWagerDialog(element)"
         >casino</mat-icon>
           </mat-cell>
     </ng-container>

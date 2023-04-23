@@ -62,7 +62,7 @@ export class WagersComponent  implements OnInit {
       error => console.error(error)
     );
   }
-  openCloneDialog(data : any) {
+  startWagerDialog(data : any) {
     this.dialog.open(GenerateWagerComponent, {
       width:'500px',
       height:'450px',
