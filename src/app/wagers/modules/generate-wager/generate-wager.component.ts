@@ -6,6 +6,7 @@ import {WagerService} from "../../services/wager.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../state/app.state";
 import {selectGameSearchQuery} from "../../reducers/wager.reducer";
+import {Dialog} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-generate-wager',
@@ -60,8 +61,23 @@ export class GenerateWagerComponent implements OnInit{
   }
 
   cancel() {
+        let dialogRef = this.dialog.open(Dialog, {
+          data: {
+            type: 'warning',
+            title: 'Cancel',
+            bodyText: 'All captured data will be lost.',
+            subBodyText: ' Are you sure you want to continue?',
+            dismissBtnText: 'No',
+            confirmBtnText: 'Yes',
+          },
+        });
 
-  }
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result.result) {
+            this.dialogRef.close();
+          }
+        });
+      }
 
   canSetPrediction() {
     return undefined;
