@@ -1,42 +1,42 @@
 
 
-.alert-dialog-title {
-  font-size: 48px;
-  font-weight: 500;
-  margin-top: 18px;
-  text-align: center;
-}
+/*.alert-dialog-title {*/
+/*  font-size: 48px;*/
+/*  font-weight: 500;*/
+/*  margin-top: 18px;*/
+/*  text-align: center;*/
+/*}*/
 
-.alert-dialog-body-text {
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 16px;
-  max-width: 240px;
-  text-align: center;
-}
+/*.alert-dialog-body-text {*/
+/*  font-size: 16px;*/
+/*  font-weight: 400;*/
+/*  margin-top: 16px;*/
+/*  max-width: 240px;*/
+/*  text-align: center;*/
+/*}*/
 
-.alert-dialog-sub-body-text {
-  font-size: 16px;
-  font-weight: 400;
-  max-width: 260px;
-  margin-top: 8px;
-  text-align: center;
-}
+/*.alert-dialog-sub-body-text {*/
+/*  font-size: 16px;*/
+/*  font-weight: 400;*/
+/*  max-width: 260px;*/
+/*  margin-top: 8px;*/
+/*  text-align: center;*/
+/*}*/
 
-.notification-check-container {
-  margin-top: 20px;
-}
+/*.notification-check-container {*/
+/*  margin-top: 20px;*/
+/*}*/
 
-.alert-dialog-actions {
-  margin-top: 20px;
-}
+/*.alert-dialog-actions {*/
+/*  margin-top: 20px;*/
+/*}*/
 
-.mat-stroked-button {
-  color: #015c95;
-}
+/*.mat-stroked-button {*/
+/*  color: #015c95;*/
+/*}*/
 
-.alert-dialog-container {
-  padding: 40px 70px;
-}
+/*.alert-dialog-container {*/
+/*  padding: 40px 70px;*/
+/*}*/
 
 
