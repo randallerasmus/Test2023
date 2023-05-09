@@ -7,7 +7,7 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../state/app.state";
 import {selectGameSearchQuery} from "../../reducers/wager.reducer";
 import {Dialog} from "@angular/cdk/dialog";
-import {AlertDialogComponent} from "../../../shared-components/alert-dialog/alert-dialog.component";
+// import {AlertDialogComponent} from "../../../shared-components/alert-dialog/alert-dialog.component";
 
 @Component({
   selector: 'app-generate-wager',
@@ -62,26 +62,26 @@ export class GenerateWagerComponent implements OnInit{
   }
 
   cancel() {
-    if (this.dialog.openDialogs) {
-      let dialogRef = this.dialog.open(AlertDialogComponent, {
-        width:'250px',
-        height:'350',
-        data: {
-          type: 'warning',
-          title: 'Cancel',
-          bodyText: 'All captured data will be lost.',
-          subBodyText: ' Are you sure you want to continue?',
-          dismissBtnText: 'No',
-          confirmBtnText: 'Yes',
-        },
-      });
-
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result.result) {
-          this.dialogRef.close();
-        }
-      });
-    }
+    // if (this.dialog.openDialogs) {
+    //   let dialogRef = this.dialog.open(, {
+    //     width:'250px',
+    //     height:'350',
+    //     data: {
+    //       type: 'warning',
+    //       title: 'Cancel',
+    //       bodyText: 'All captured data will be lost.',
+    //       subBodyText: ' Are you sure you want to continue?',
+    //       dismissBtnText: 'No',
+    //       confirmBtnText: 'Yes',
+    //     },
+    //   });
+    //
+    //   dialogRef.afterClosed().subscribe((result) => {
+    //     if (result.result) {
+    //       this.dialogRef.close();
+    //     }
+    //   });
+    // }
   }
 
   canSetPrediction() {

@@ -1,114 +1,114 @@
-<div
-  class="alert-dialog-container"
-  fxLayout="column"
-  fxLayoutAlign="center center"
->
-  <div class="info-icon" *ngIf="type == 'info'">
-    <svg
-      width="84"
-      height="84"
-      viewBox="0 0 84 84"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M37.8335 67H46.1668V58.6667H37.8335V67ZM42.0002 0.333344C19.0002 0.333344 0.333496 19 0.333496 42C0.333496 65 19.0002 83.6667 42.0002 83.6667C65.0002 83.6667 83.6668 65 83.6668 42C83.6668 19 65.0002 0.333344 42.0002 0.333344ZM42.0002 75.3334C23.6252 75.3334 8.66683 60.375 8.66683 42C8.66683 23.625 23.6252 8.66668 42.0002 8.66668C60.3752 8.66668 75.3335 23.625 75.3335 42C75.3335 60.375 60.3752 75.3334 42.0002 75.3334ZM42.0002 17C32.7918 17 25.3335 24.4583 25.3335 33.6667H33.6668C33.6668 29.0833 37.4168 25.3333 42.0002 25.3333C46.5835 25.3333 50.3335 29.0833 50.3335 33.6667C50.3335 42 37.8335 40.9583 37.8335 54.5H46.1668C46.1668 45.125 58.6668 44.0833 58.6668 33.6667C58.6668 24.4583 51.2085 17 42.0002 17Z"
-        fill="#015C95"
-      />
-    </svg>
-  </div>
+<!--<div-->
+<!--  class="alert-dialog-container"-->
+<!--  fxLayout="column"-->
+<!--  fxLayoutAlign="center center"-->
+<!--&gt;-->
+<!--  <div class="info-icon" *ngIf="type == 'info'">-->
+<!--    <svg-->
+<!--      width="84"-->
+<!--      height="84"-->
+<!--      viewBox="0 0 84 84"-->
+<!--      fill="none"-->
+<!--      xmlns="http://www.w3.org/2000/svg"-->
+<!--    >-->
+<!--      <path-->
+<!--        d="M37.8335 67H46.1668V58.6667H37.8335V67ZM42.0002 0.333344C19.0002 0.333344 0.333496 19 0.333496 42C0.333496 65 19.0002 83.6667 42.0002 83.6667C65.0002 83.6667 83.6668 65 83.6668 42C83.6668 19 65.0002 0.333344 42.0002 0.333344ZM42.0002 75.3334C23.6252 75.3334 8.66683 60.375 8.66683 42C8.66683 23.625 23.6252 8.66668 42.0002 8.66668C60.3752 8.66668 75.3335 23.625 75.3335 42C75.3335 60.375 60.3752 75.3334 42.0002 75.3334ZM42.0002 17C32.7918 17 25.3335 24.4583 25.3335 33.6667H33.6668C33.6668 29.0833 37.4168 25.3333 42.0002 25.3333C46.5835 25.3333 50.3335 29.0833 50.3335 33.6667C50.3335 42 37.8335 40.9583 37.8335 54.5H46.1668C46.1668 45.125 58.6668 44.0833 58.6668 33.6667C58.6668 24.4583 51.2085 17 42.0002 17Z"-->
+<!--        fill="#015C95"-->
+<!--      />-->
+<!--    </svg>-->
+<!--  </div>-->
 
-  <div class="warning-icon" *ngIf="type == 'warning'">
-    <svg
-      width="92"
-      height="80"
-      viewBox="0 0 92 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M45.9998 17.0417L77.3748 71.25H14.6248L45.9998 17.0417ZM45.9998 0.416664L0.166504 79.5833H91.8332L45.9998 0.416664ZM50.1665 58.75H41.8332V67.0833H50.1665V58.75ZM50.1665 33.75H41.8332V50.4167H50.1665V33.75Z"
-        fill="#F8AC59"
-      />
-    </svg>
-  </div>
+<!--  <div class="warning-icon" *ngIf="type == 'warning'">-->
+<!--    <svg-->
+<!--      width="92"-->
+<!--      height="80"-->
+<!--      viewBox="0 0 92 80"-->
+<!--      fill="none"-->
+<!--      xmlns="http://www.w3.org/2000/svg"-->
+<!--    >-->
+<!--      <path-->
+<!--        d="M45.9998 17.0417L77.3748 71.25H14.6248L45.9998 17.0417ZM45.9998 0.416664L0.166504 79.5833H91.8332L45.9998 0.416664ZM50.1665 58.75H41.8332V67.0833H50.1665V58.75ZM50.1665 33.75H41.8332V50.4167H50.1665V33.75Z"-->
+<!--        fill="#F8AC59"-->
+<!--      />-->
+<!--    </svg>-->
+<!--  </div>-->
 
-  <div class="success-icon" *ngIf="type == 'success'">
-    <svg
-      width="84"
-      height="84"
-      viewBox="0 0 84 84"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M41.9999 0.333496C18.9999 0.333496 0.333252 19.0002 0.333252 42.0002C0.333252 65.0002 18.9999 83.6668 41.9999 83.6668C64.9999 83.6668 83.6666 65.0002 83.6666 42.0002C83.6666 19.0002 64.9999 0.333496 41.9999 0.333496ZM41.9999 75.3335C23.6249 75.3335 8.66659 60.3752 8.66659 42.0002C8.66659 23.6252 23.6249 8.66683 41.9999 8.66683C60.3749 8.66683 75.3333 23.6252 75.3333 42.0002C75.3333 60.3752 60.3749 75.3335 41.9999 75.3335ZM61.1249 23.5835L33.6666 51.0418L22.8749 40.2918L16.9999 46.1668L33.6666 62.8335L66.9999 29.5002L61.1249 23.5835Z"
-        fill="#5CB85C"
-      />
-    </svg>
-  </div>
+<!--  <div class="success-icon" *ngIf="type == 'success'">-->
+<!--    <svg-->
+<!--      width="84"-->
+<!--      height="84"-->
+<!--      viewBox="0 0 84 84"-->
+<!--      fill="none"-->
+<!--      xmlns="http://www.w3.org/2000/svg"-->
+<!--    >-->
+<!--      <path-->
+<!--        d="M41.9999 0.333496C18.9999 0.333496 0.333252 19.0002 0.333252 42.0002C0.333252 65.0002 18.9999 83.6668 41.9999 83.6668C64.9999 83.6668 83.6666 65.0002 83.6666 42.0002C83.6666 19.0002 64.9999 0.333496 41.9999 0.333496ZM41.9999 75.3335C23.6249 75.3335 8.66659 60.3752 8.66659 42.0002C8.66659 23.6252 23.6249 8.66683 41.9999 8.66683C60.3749 8.66683 75.3333 23.6252 75.3333 42.0002C75.3333 60.3752 60.3749 75.3335 41.9999 75.3335ZM61.1249 23.5835L33.6666 51.0418L22.8749 40.2918L16.9999 46.1668L33.6666 62.8335L66.9999 29.5002L61.1249 23.5835Z"-->
+<!--        fill="#5CB85C"-->
+<!--      />-->
+<!--    </svg>-->
+<!--  </div>-->
 
-  <div class="error-icon" *ngIf="type == 'error'">
-    <svg
-      width="84"
-      height="84"
-      viewBox="0 0 84 84"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M37.8333 54.5H46.1667V62.8333H37.8333V54.5ZM37.8333 21.1667H46.1667V46.1667H37.8333V21.1667ZM41.9583 0.333336C18.9583 0.333336 0.333336 19 0.333336 42C0.333336 65 18.9583 83.6667 41.9583 83.6667C65 83.6667 83.6667 65 83.6667 42C83.6667 19 65 0.333336 41.9583 0.333336ZM42 75.3333C23.5833 75.3333 8.66667 60.4167 8.66667 42C8.66667 23.5833 23.5833 8.66667 42 8.66667C60.4167 8.66667 75.3333 23.5833 75.3333 42C75.3333 60.4167 60.4167 75.3333 42 75.3333Z"
-        fill="#ED5565"
-      />
-    </svg>
-  </div>
+<!--  <div class="error-icon" *ngIf="type == 'error'">-->
+<!--    <svg-->
+<!--      width="84"-->
+<!--      height="84"-->
+<!--      viewBox="0 0 84 84"-->
+<!--      fill="none"-->
+<!--      xmlns="http://www.w3.org/2000/svg"-->
+<!--    >-->
+<!--      <path-->
+<!--        d="M37.8333 54.5H46.1667V62.8333H37.8333V54.5ZM37.8333 21.1667H46.1667V46.1667H37.8333V21.1667ZM41.9583 0.333336C18.9583 0.333336 0.333336 19 0.333336 42C0.333336 65 18.9583 83.6667 41.9583 83.6667C65 83.6667 83.6667 65 83.6667 42C83.6667 19 65 0.333336 41.9583 0.333336ZM42 75.3333C23.5833 75.3333 8.66667 60.4167 8.66667 42C8.66667 23.5833 23.5833 8.66667 42 8.66667C60.4167 8.66667 75.3333 23.5833 75.3333 42C75.3333 60.4167 60.4167 75.3333 42 75.3333Z"-->
+<!--        fill="#ED5565"-->
+<!--      />-->
+<!--    </svg>-->
+<!--  </div>-->
 
-  <div class="alert-dialog-title">
-    <label>{{ title }}</label>
-  </div>
+<!--  <div class="alert-dialog-title">-->
+<!--    <label>{{ title }}</label>-->
+<!--  </div>-->
 
-  <div class="alert-dialog-body-text">
-    <label>{{ bodyText }}</label>
-  </div>
+<!--  <div class="alert-dialog-body-text">-->
+<!--    <label>{{ bodyText }}</label>-->
+<!--  </div>-->
 
-  <div class="alert-dialog-sub-body-text">
-    <label>{{ subBodyText }}</label>
-  </div>
+<!--  <div class="alert-dialog-sub-body-text">-->
+<!--    <label>{{ subBodyText }}</label>-->
+<!--  </div>-->
 
-  <div class="notification-check-container" *ngIf="enableNotificationCheck">
-    <mat-checkbox [(ngModel)]="notificationChecked" labelPosition="before">
-      Send notification Email/SMS
-    </mat-checkbox>
-  </div>
+<!--  <div class="notification-check-container" *ngIf="enableNotificationCheck">-->
+<!--    <mat-checkbox [(ngModel)]="notificationChecked" labelPosition="before">-->
+<!--      Send notification Email/SMS-->
+<!--    </mat-checkbox>-->
+<!--  </div>-->
 
-  <div
-    class="alert-dialog-actions"
-    fxLayout="row"
-    fxLayoutAlign="center center"
-    fxLayoutGap="16px"
-  >
-    <div *ngIf="type != 'success'">
-      <button id="btn-alert-dialog-cancelBtn1" mat-stroked-button (click)="cancel()" *ngIf="type == 'info'">
-        {{ dismissBtnText }}
-      </button>
-      <button
-        id="btn-alert-dialog-cancelBtn2"
-        mat-raised-button
-        color="primary"
-        (click)="cancel()"
-        *ngIf="type == 'warning'"
-      >
-        {{ dismissBtnText }}
-      </button>
-    </div>
-    <button
-      id="btn-alert-dialog-confirmBtn"
-      *ngIf="!disableConfirmBtn"
-      mat-raised-button
-      color="{{ type == 'warning' ? 'warn' : 'primary' }}"
-      (click)="confirm()"
-    >
-      {{ confirmBtnText }}
-    </button>
-  </div>
-</div>
+<!--  <div-->
+<!--    class="alert-dialog-actions"-->
+<!--    fxLayout="row"-->
+<!--    fxLayoutAlign="center center"-->
+<!--    fxLayoutGap="16px"-->
+<!--  >-->
+<!--    <div *ngIf="type != 'success'">-->
+<!--      <button id="btn-alert-dialog-cancelBtn1" mat-stroked-button (click)="cancel()" *ngIf="type == 'info'">-->
+<!--        {{ dismissBtnText }}-->
+<!--      </button>-->
+<!--      <button-->
+<!--        id="btn-alert-dialog-cancelBtn2"-->
+<!--        mat-raised-button-->
+<!--        color="primary"-->
+<!--        (click)="cancel()"-->
+<!--        *ngIf="type == 'warning'"-->
+<!--      >-->
+<!--        {{ dismissBtnText }}-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <button-->
+<!--      id="btn-alert-dialog-confirmBtn"-->
+<!--      *ngIf="!disableConfirmBtn"-->
+<!--      mat-raised-button-->
+<!--      color="{{ type == 'warning' ? 'warn' : 'primary' }}"-->
+<!--      (click)="confirm()"-->
+<!--    >-->
+<!--      {{ confirmBtnText }}-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->

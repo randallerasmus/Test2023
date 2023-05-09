@@ -32,7 +32,7 @@ import { RegisterComponent } from './register/register.component';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {WagerModule} from "./wagers/wager.module";
 import {DatePipe} from "@angular/common";
-import { AlertDialogComponent } from './shared-components/alert-dialog/alert-dialog.component';
+// import { AlertDialogComponent } from './shared-components/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { AlertDialogComponent } from './shared-components/alert-dialog/alert-dia
     SettingsComponent,
     InboxComponent,
     RegisterComponent,
-    AlertDialogComponent,
+
 
   ],
   imports: [
